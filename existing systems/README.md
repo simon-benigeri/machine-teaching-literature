@@ -6,11 +6,13 @@ Some notes about existing machine teaching systems. We can inspire ourselves fro
 ### Microsoft [Project Bonsai](https://docs.microsoft.com/en-us/bonsai/product/)
 
 ### [Snorkel.org](https://www.snorkel.org/)
+The open source project before Snorkel became a company.
 
 #### Key functionality: Programmatically labeling data
 1. Users can programmatically label data using labeling function-rules, heuristics, and other custom complex operators
 2. Not sure about the interface
 3. Lots of Jupyter notebook examples
+4. Lots of research to build on baselines
 
 ### Snorkel Flow by [Snorkel.ai](https://snorkel.ai/platform/#how-it-works)
 
@@ -20,11 +22,6 @@ Some notes about existing machine teaching systems. We can inspire ourselves fro
 3. System provides ready-made labeling functions (LF) builders, data exploration tools,  and auto-suggest features 
 4. Users receive instant feedback with coverage and accuracy estimates of LFs to develop so as to build a high-quality training data set
 5. Lots of research that suggests ideas for building a similar system
-
-### [Snorkel.org](https://www.snorkel.org/)
-1. Users can programmatically label data using labeling function-rules, heuristics, and other custom complex operators
-2. Not sure about the interface
-3. Lots of Jupyter notebook examples
 
 #### Key functionality: Labeling Functions
 1. Users can programmatically label data using labeling function-rules, heuristics, and other custom complex operators
