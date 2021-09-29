@@ -1,0 +1,16 @@
+# Data files
+data
+saved
+
+# .idea
+.idea
+
+# vscode
+.vscode
+
+.DS_STORE
+/logs/
+
+/lightning_logs/
+/dope image classifier
+/wandbß
