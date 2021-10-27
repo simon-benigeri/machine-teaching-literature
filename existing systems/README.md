@@ -3,16 +3,9 @@
 ## Existing Systems
 Some notes about existing machine teaching systems. We can inspire ourselves from these or integrate them 
 
-### [Snorkel.org](https://www.snorkel.org/)
-The open source project before Snorkel became a company.
-
-#### Key functionality: Programmatically labeling data
-1. Users can programmatically label data using labeling function-rules, heuristics, and other custom complex operators
-2. Not sure about the interface
-3. Lots of Jupyter notebook examples
-4. Lots of research to build on baselines
-
 ### Snorkel Flow by [Snorkel.ai](https://snorkel.ai/platform/#how-it-works)
+
+Existing commercial system based off of SNORKEL.
 
 #### Key functionality: Programmatically labeling data + UI
 1. Users can programmatically label data using labeling function-rules, heuristics, and other custom complex operators
@@ -27,7 +20,13 @@ The open source project before Snorkel became a company.
 3. System provides ready-made labeling functions (LF) builders, data exploration tools,  and auto-suggest features 
 4. Users receive instant feedback with coverage and accuracy estimates of LFs to develop so as to build a high-quality training data set
 
-### How can we use Snorkel?
+## Building blocks we can use
+
+### [Snorkel](https://www.snorkel.org/)
+
+The flagship system for data programming with user-provided labeling functions
+
+#### How can we use Snorkel?
 
 Heuristics are called **Labeling Functions (LFs)**. 
 Here are some common types of LFs:
@@ -37,7 +36,8 @@ Here are some common types of LFs:
 - Noisy manual labels: crowdsourcing
 - External models: other models with useful signals
 
-#### [BabbleLabble Framework](https://arxiv.org/pdf/1805.03818.pdf)
+#### [BabbleLabble Framework](https://github.com/HazyResearch/babble). 
+[paper](https://arxiv.org/pdf/1805.03818.pdf)
 
 **Key**:
 **Snorkel Labeling Functions** can be parsed from natural language explanations and this is more efficient interaction.
@@ -52,9 +52,20 @@ Labeling functions are imperfect so using a simple rule-based semantic parser wo
 
 #### [Snorkel Metal](https://github.com/HazyResearch/metal)
 
-An extension of Snorkel, the "best" parts of which are now intergrated into Snorkel. The idea is that Multi Task Learning helps learn better representations. Learning labeling functions can be seen as learning many small tasks. Below are two introductions and tutorials to understand the concepts.
+Extends Snorkel to multi-task learning settings and includes a data programming formulation with better scaling properties.
+Now intergrated into Snorkel. 
+The idea is that Multi Task Learning helps learn better representations. 
+Learning labeling functions can be seen as learning many small tasks. Below are two introductions and tutorials to understand the concepts.
 
-#### Resources
+#### [Reef](https://github.com/HazyResearch/reef)
+Automatically generates labeling functions from a small labeled dataset
+
+Based off the [Snuba](https://www.paroma.xyz/tech_report_reef.pdf) paper
+
+#### [Coral](https://arxiv.org/abs/1709.02477)
+Improves the label aggregation process by inferring generative model structure via static analysis of labeling functions
+
+#### Resources and tutorials
 - [Basics Tutorial for Snorkel MeTaL](https://github.com/HazyResearch/metal/blob/master/tutorials/Basics.ipynb)
 - [Tradeoffs of different labeling approaches, like Data Programming or Majority Vote, Explanations or Traditional Labels, Including LFs as features](https://github.com/HazyResearch/babble/blob/master/tutorial/Tutorial3_Tradeoffs.ipynb).
 
