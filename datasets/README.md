@@ -4,6 +4,51 @@
 
 ### 1. Antisemitic tweets
 
+#### Overview
+
+25900 tweets that mention "jew". 
+- 24700 unlabelled tweets. 
+- 700 labeled tweets for the LF set (a dataset to valudate LFs and to get new ideas for LFs)
+- 430 labeled tweets for testing
+
+
+#### Training a week supervision model
+*Goal*: Build a large training set
+Training with SNORKEL
+1. create LFs
+2. train a generative model
+3. create probabilistic training data
+4. train a discriminative model
+
+<img width="780" alt="Screen Shot 2021-10-27 at 1 54 17 PM" src="https://user-images.githubusercontent.com/44941782/139128937-81b3a6b3-9a8e-4c2f-bf2a-6da4c0d3bb8f.png">
+
+*Target users* have domain knowledge.
+Below is a workflow to create labeling functions. For this task and dataset, it took 1 day for an expert. It is estimated to take a few days for a non expert.
+
+Steps:
+1. Go through the examples in the LF set and identify a new potential LF.
+eg. a function that returns positive if the tween has one of the common insults
+```
+# Common insults against jews
+INSULTS = r"\bjew"
+(bitch|shit|crow|fuck|rat|cockroach|ass|bast(a|e)rd)"
+
+def insults(tweet_text):
+  return POSITIVE if re.search(INSULTS, tweet_text) else ABSTAIN
+```
+eg. 
+
+2. Add it to the Label Matrix and check that its accuracy is at least 50%. Try to get the highest
+accuracy possible, while keeping a good coverage. We grouped different LFs together if
+they relate to the same topic. (See Appendix 7.2, Figure 10.)
+3. Every once in a while we use the baseline Majority Vote model (provided in Snorkel Metal)
+to label your LF set. We update LFs accordingly to optimize our score with the Majority
+Vote model.
+4. If the Majority Vote model achieves more that 60% precision and 60% recall, we train our
+Snorkel Label Model. Otherwise, we go back to step 1.
+5. To validate the Label Model, we looked at the top 100 most anti-semitic tweets from our
+Training set.
+
 ### [Twitter Sentiment Analysis Dataset](https://www.kaggle.com/jp797498e/twitter-entity-sentiment-analysis)
 
 #### Overview
