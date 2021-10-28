@@ -76,11 +76,11 @@ def jewish_author(tweet_text):
 
 <img width="712" alt="Screen Shot 2021-10-27 at 3 23 35 PM" src="https://user-images.githubusercontent.com/44941782/139141445-50959d9b-6681-4a61-aa92-b92b7bffac54.png">
 
-Relevant metrics:
-*Emp accuracy*: fraction of correct LF predictions. Target >= 0.5 for all LFs
-*Coverage* % of samples for which at least one LF provides a label. Target: maximize coverage without sacrificing accuracy
-*Polarity*: what values the LF returns
-*Overlaps & Conflicts*: how much an LF overlaps and conflicts with other LFs. 
+Relevant metrics:  
+- *Emp accuracy*: fraction of correct LF predictions. Target >= 0.5 for all LFs
+- *Coverage* % of samples for which at least one LF provides a label. Target: maximize coverage without sacrificing accuracy
+- *Polarity*: what values the LF returns
+- *Overlaps & Conflicts*: how much an LF overlaps and conflicts with other LFs. 
 
 7. Every once in a while we use the baseline Majority Vote model (provided in Snorkel Metal) to label the LF set. Update LFs accordingly to optimize score with the Majority Vote model.
 
