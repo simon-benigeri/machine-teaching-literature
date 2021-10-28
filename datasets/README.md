@@ -72,16 +72,21 @@ def jewish_author(tweet_text):
 
 5. Go through the examples in the LF set and identify a new potential LF.
 
-2. Add it to the Label Matrix and check that its accuracy is at least 50%. Try to get the highest
-accuracy possible, while keeping a good coverage. We grouped different LFs together if
-they relate to the same topic. (See Appendix 7.2, Figure 10.)
-3. Every once in a while we use the baseline Majority Vote model (provided in Snorkel Metal)
-to label your LF set. We update LFs accordingly to optimize our score with the Majority
-Vote model.
-4. If the Majority Vote model achieves more that 60% precision and 60% recall, we train our
-Snorkel Label Model. Otherwise, we go back to step 1.
-5. To validate the Label Model, we looked at the top 100 most anti-semitic tweets from our
-Training set.
+6. Add the new LF to the Label Matrix. Check that its accuracy is at least 50%. If different LFs relate to the same topic or concept, they can be grouped together. 
+
+<img width="712" alt="Screen Shot 2021-10-27 at 3 23 35 PM" src="https://user-images.githubusercontent.com/44941782/139141445-50959d9b-6681-4a61-aa92-b92b7bffac54.png">
+
+Relevant metrics:
+*Emp accuracy*: fraction of correct LF predictions. Target >= 0.5 for all LFs
+*Coverage* % of samples for which at least one LF provides a label. Target: maximize coverage without sacrificing accuracy
+*Polarity*: what values the LF returns
+*Overlaps & Conflicts*: how much an LF overlaps and conflicts with other LFs. 
+
+7. Every once in a while we use the baseline Majority Vote model (provided in Snorkel Metal) to label the LF set. Update LFs accordingly to optimize score with the Majority Vote model.
+
+8. If the Majority Vote model achieves more that 60% precision and 60% recall, we train our Snorkel Label Model. Otherwise, we go back to step 5.
+
+9. To validate the Label Model, we looked at the top 100 most anti-semitic tweets from our Training set.
 
 ### [Twitter Sentiment Analysis Dataset](https://www.kaggle.com/jp797498e/twitter-entity-sentiment-analysis)
 
