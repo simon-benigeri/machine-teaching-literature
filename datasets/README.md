@@ -82,9 +82,23 @@ Relevant metrics:
 - *Polarity*: what values the LF returns
 - *Overlaps & Conflicts*: how much an LF overlaps and conflicts with other LFs. 
 
-7. Every once in a while we use the baseline Majority Vote model (provided in Snorkel Metal) to label the LF set. Update LFs accordingly to optimize score with the Majority Vote model.
+7. Every once in a while use the baseline Majority Vote model (provided in Snorkel Metal) to label the LF set. Update LFs accordingly to optimize score with the Majority Vote model.
 
-8. If the Majority Vote model achieves more that 60% precision and 60% recall, we train our Snorkel Label Model. Otherwise, we go back to step 5.
+8. Check if the Majority Vote model is good enough. 
+  - If the Majority Vote model achieves achieves more that 60% precision and 60% recall:
+    - Train the Snorkel Label Model
+  - If the Majority Vote model isn’t good enough:
+    - Fix the LFs
+    - or go back to step 5 and repeat
+
+Once your Majority Vote model works, then run your LFs over your Train set. You should have at least 60% coverage.
+Once this is done, train your Label Model!
+To validate the Label Model, I ran the Label Model over my Training set and printed the top 100 most anti-semitic tweets and 100 least anti-semitic tweets to make sure it was working correctly.
+Now that we have our Label Model, we can compute probabilistic labels for 25 thousand of tweets and use them as a training set. Now, let’s go ahead and train our classification model!
+General Tips for Snorkel:
+On LF accuracy: In the WS step, we’re going for high precision. All of your LFs should have at least 50% accuracy on the LF set. If you can get 75% or more that’s even better.
+On LF coverage: You want to have at least one LF voting positive/negative for at least 65% of our training set. This is called LF Coverage by Snorkel.
+If you’re not a domain expert to start, you’ll get ideas for new LFs as you label your 600 initial data points.
 
 9. To validate the Label Model, we looked at the top 100 most anti-semitic tweets from our Training set.
 
