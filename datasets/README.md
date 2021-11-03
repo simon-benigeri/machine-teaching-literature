@@ -3,6 +3,9 @@
 ## Text Classification
 
 ### 1. Antisemitic tweets
+Source: Building NLP Classifiers Cheaply With Transfer Learning and Weak Supervision 
+- [Medium blog post](https://medium.com/sculpt/a-technique-for-building-nlp-classifiers-efficiently-with-transfer-learning-and-weak-supervision-a8e2f21ca9c8)
+- [paper](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/reports/custom/15577251.pdf)
 
 #### Overview
 
