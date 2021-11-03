@@ -80,14 +80,21 @@ def jewish_author(tweet_text):
 
 <img width="712" alt="Screen Shot 2021-10-27 at 3 23 35 PM" src="https://user-images.githubusercontent.com/44941782/139141445-50959d9b-6681-4a61-aa92-b92b7bffac54.png">
 
-Relevant metrics:  
+Important metrics:  
 - *Emp accuracy*: fraction of correct LF predictions. 
   - **Target** at least 50% for all LFs, 75% is even better.
 - *Coverage* % of samples for which at least one LF provides a label. The goal is to maximize coverage without sacrificing accuracy. 
   - **Target**: at least one LF voting 1 or 0 for at least 65% of the training set.
   - Coverage may be easier to achieve for a domain expert, but ideas for good LFs will come with experience, eg. by iterating over LFs, by labeling the intial datapoints. **NOTE**: in an interaction it is probably useful to show the user samples before asking them for LFs.
-- *Polarity*: what values the LF returns
-- *Overlaps & Conflicts*: how much an LF overlaps and conflicts with other LFs. 
+
+LF metrics:
+- Polarity: The set of unique labels this LF outputs (excluding abstains)
+- Coverage: The fraction of the dataset the LF labels
+- Overlaps: The fraction of the dataset where this LF and at least one other LF label
+- Conflicts: The fraction of the dataset where this LF and at least one other LF label and disagree
+- Correct: The number of data points this LF labels correctly (if gold labels are provided)
+- Incorrect: The number of data points this LF labels incorrectly (if gold labels are provided)
+- Empirical Accuracy: The empirical accuracy of this LF (if gold labels are provided)
 
 7. Every once in a while use the baseline Majority Vote model (provided in Snorkel Metal) to label the LF set. Update LFs accordingly to optimize score with the Majority Vote model.
 
@@ -120,8 +127,10 @@ Please use `twitter_training.csv` as the training set and `twitter_validation.cs
 ### 2. IMDB Movie Reviews: Sentiment Analysis
 
 ### 3. YouTube Comments: SPAM detection
+- **See the [Snorkel SPAM Tutorial](https://www.snorkel.org/use-cases/01-spam-tutorial)**
 
 ## [Named Entity Recognition datasets](https://github.com/davidsbatista/NER-datasets)
+- **See the [Snorkel information extraction tutorial](https://www.snorkel.org/use-cases/spouse-demo) 
 
 ### [CoNNL2003 shared task - Language-Independent Named Entity Recognition](https://aclanthology.org/W03-0419/)
 
