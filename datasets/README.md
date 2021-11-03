@@ -85,9 +85,6 @@ Relevant metrics:
   - Coverage may be easier to achieve for a domain expert, but ideas for good LFs will come with experience, eg. by iterating over LFs, by labeling the intial datapoints. **NOTE**: in an interaction it is probably useful to show the user samples before asking them for LFs.
 - *Polarity*: what values the LF returns
 - *Overlaps & Conflicts*: how much an LF overlaps and conflicts with other LFs. 
-On LF accuracy: In the WS step, we’re going for high precision. All of your LFs should have at least 50% accuracy on the LF set. If you can get 75% or more that’s even better.
-On LF coverage: You want to have at least one LF voting positive/negative for at least 65% of our training set. This is called LF Coverage by Snorkel.
-If you’re not a domain expert to start, you’ll get ideas for new LFs as you label your 600 initial data points.
 
 7. Every once in a while use the baseline Majority Vote model (provided in Snorkel Metal) to label the LF set. Update LFs accordingly to optimize score with the Majority Vote model.
 
