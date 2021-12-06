@@ -16,5 +16,10 @@ dependencies:
   - scikit-learn
   - snorkel
   - spacy
+  - spacy-model-en_core_web_sm
   - matplotlib
   - pytorch
+  - tensorboardx
+  - pip:
+    - snorkel-metal
+    
