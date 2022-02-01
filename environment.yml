@@ -10,10 +10,11 @@ dependencies:
   - numpy
   - pandas
   - nltk
-  - textblob
   - jupyterlab
   - tqdm
   - scikit-learn
+  - imbalanced-learn
+  - textblob
   - snorkel
   - spacy
   - spacy-model-en_core_web_sm
