@@ -97,7 +97,3 @@ MT follows and extends principles of software engineering and programming langua
     - MT should support decomposition in concept modelling through modular development (i.e. decomposing concepts into sub-concepts, using models as features of other models). Simard et. postulate that it can be achieved by standardising interfaces for models and features, in analogy to elements of integrated development environments, such as solution, projects and project dependencies.
 - Version Control 
     - all teacher’s actions are relevant and contribute to build a concept “program”. Hence they should be stored, analog to code versioning and commits, and used to facilitate collaboration between different teachers and integrate their contributions.
-
-#### Comments
-
-
