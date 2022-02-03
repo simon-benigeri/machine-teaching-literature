@@ -2,7 +2,7 @@
 
 ## Text Classification
 
-### 1. Antisemitic tweets
+### 1. Antisemitic tweet classification
 Source: Building NLP Classifiers Cheaply With Transfer Learning and Weak Supervision 
 - [Medium blog post](https://medium.com/sculpt/a-technique-for-building-nlp-classifiers-efficiently-with-transfer-learning-and-weak-supervision-a8e2f21ca9c8)
 - [paper](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/reports/custom/15577251.pdf)
@@ -122,11 +122,7 @@ This is an entity-level sentiment analysis dataset of twitter. Given a message a
 #### Usage
 Please use `twitter_training.csv` as the training set and `twitter_validation.csv` as the validation set. Top 1 classification accuracy is used as the metric.
 
-### [Predict reading level of book given review](https://www.kaggle.com/thomaskonstantin/highly-rated-children-books-and-stories?select=children_stories.Csv)
-
-### 2. IMDB Movie Reviews: Sentiment Analysis
-
-### 3. YouTube Comments: SPAM detection
+### 2. YouTube Comments: SPAM detection
 - **See the [Snorkel SPAM Tutorial](https://www.snorkel.org/use-cases/01-spam-tutorial)**
 
 ## [Named Entity Recognition datasets](https://github.com/davidsbatista/NER-datasets)
