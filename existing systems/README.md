@@ -6,6 +6,7 @@ Some notes about existing machine teaching systems. We can inspire ourselves fro
 ### Snorkel Flow by [Snorkel.ai](https://snorkel.ai/platform/#how-it-works)
 
 Existing commercial system based off of SNORKEL.
+Snorkel is not quite a machine teaching system, but it can be used to create one. We can define an intereaction where users rapidly annotate data.
 
 #### Key functionality: Programmatically labeling data + UI
 1. Users can programmatically label data using labeling function-rules, heuristics, and other custom complex operators
