@@ -1,6 +1,6 @@
 # machine-teaching-literature
 
-## Introduction
+## Introduction to Machine Teaching
 
 ### Useful definitions:
 
