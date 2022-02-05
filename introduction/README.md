@@ -188,7 +188,7 @@ Machine Teaching is the process of finding an optimal training set given a learn
 
 ![](Image/MT_optimal_training_set.png)
 
-Let's say we have a target *learner* or model \theta<sup>*</sup>
+Let's say we have a target *learner* or model $\theta$<sup>*</sup>
 
 The authors discuss how we can apply this problem to the education domain. The paper is mostly theoretical, but it helps us focus on the key objective:
 
