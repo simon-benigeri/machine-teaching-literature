@@ -4,8 +4,9 @@ Notes on machine teaching papers
 ## [Introduction](https://github.com/simon-benigeri/machine-teaching-literature/tree/main/introduction)
 
 You will find an overview of the field, including:
-- a summary of a key paper
 - useful definitions
+- a summary of the key paper
+- a description of the machine teaching process from Microsoft
 - links to papers and articles that expand on different approaches, like:
   - iterative machine teaching
   - teaching a black box learner
