@@ -162,3 +162,33 @@ The following image shows the high-level process of machine teaching:
 3. If the training set is realizable, the teacher assesses whether training quality criteria are being met.
 4. If quality criteria aren't being met, the teacher finds the test errors and adds the fixes to the training set, then repeats the assessment steps.
 5. Once the training set is realizable and quality criteria are met, the process finishes.
+
+### Key Take Away:
+We can use this resource to understand how to build our own Machine Teaching System. 
+
+#### We need to provide teaching capabilities
+The role of the teacher is described a bit more concreteley. The teacher:
+- explores and labels data
+- provides some input to define features or concepts
+- judge features and concepts based on their contribution to the machine learning system's performance
+- interact with the data and machine learning system until the machine learning system's performance is satisfactory.
+
+**One way to do this is to define an interaction by which a teacher can quickly create a labeled dataset**.
+
+#### We need to provide to handle the machine learning part ourselves
+The ML training needs to be abstracted away from the user. It does not have to use complicated algorithms. For example, given a 
+
+## [Machine Teaching - An Inverse Problem to Machine Learning and an Approach Toward Optimal Education](https://www.semanticscholar.org/paper/Machine-Teaching%3A-An-Inverse-Problem-to-Machine-and-Zhu/f83ca18f3834d45a70e9b54578e2c33870dde67d) and [An Overview of Machine Teaching](https://arxiv.org/abs/1801.05927)
+
+These two papers are described together because they come from the same author and the takeaways we need for our problem are the same in both papers.
+
+### Machine Teaching Definition
+
+Machine Teaching is the process of finding an optimal training set given a learner. 
+
+![](Image/MT_optimal_training_set.png)
+
+Let's say we have a target *learner* or model \theta<sup>*</sup>
+
+The authors discuss how we can apply this problem to the education domain. The paper is mostly theoretical, but it helps us focus on the key objective:
+
