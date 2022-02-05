@@ -71,7 +71,7 @@ MT follows and extends principles of software engineering and programming langua
 - modularisation and decomposition to solve complex problems
 - supporting collaboration through adoption of standardised tools (e.g., programming languages, APIs, documentation, design patterns, componentisation, version control, etc.). This enables to scale to multiple contributions to the solution of the complex problem. 
 
-**The role of machine teachers** according to Simard et al.
+**The role of machine teachers** according to Simard et al.:
 
 “The role of the teacher is to transfer knowledge to the learning machine so that it can generate a useful model that can approximate a concept”. They provide the following set of operational definitions for understanding what they meant:
 - A concept is a mapping from any example to a label value.
