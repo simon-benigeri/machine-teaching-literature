@@ -21,8 +21,6 @@
 
 ## Papers
 
-### Microsoft [Machine Teaching Overview](https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/articles/machine-teaching)
-
 ### [Machine Teaching - A New Paradigm for Building Machine Learning Systems](https://arxiv.org/abs/1707.06742)
 
 #### Summary
@@ -97,3 +95,65 @@ MT follows and extends principles of software engineering and programming langua
     - MT should support decomposition in concept modelling through modular development (i.e. decomposing concepts into sub-concepts, using models as features of other models). Simard et. postulate that it can be achieved by standardising interfaces for models and features, in analogy to elements of integrated development environments, such as solution, projects and project dependencies.
 - Version Control 
     - all teacher’s actions are relevant and contribute to build a concept “program”. Hence they should be stored, analog to code versioning and commits, and used to facilitate collaboration between different teachers and integrate their contributions.
+
+
+### Microsoft [Machine Teaching Overview](https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/articles/machine-teaching)
+
+Microsoft describes Machine Teaching as a new paradigm for machine learning systems that:
+- Combines subject matter expertise from human domain experts with AI and ML.
+- uses deep reinforcement learning to identify patterns in the learning process and adopt positive behaviors in its own methods.
+- Leverages simulated environments to generate large amounts of synthetic data for domain-specific use cases and scenarios.
+- Provides for greater explainability of the behavior of resulting models.
+
+This page provides plenty of information on this view of Machine Teaching. It shows how to leverage technologies like Deep RL, simulation, etc. I did not try to  explore this in any detail. Diving into applications of deep RL and simulation for a prototype that was first described as "maybe we should start by having the user  with couple regex and some keyword search" seemed like using a bazooka to kill a fly. However, I want to draw your attention to the flowcharts and methodologies provided by microsoft. I think they can help you design the application you need to build. Also if you think you can make this Deep RL thing work - go for it.
+
+#### Machine Teaching Process build and development
+
+The following chart describes the build and development process with 3 stages: build, train, and deploy.
+
+![](https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/media/machine-teaching-1-2.png)
+
+**Build Phase**:
+- Write the machine teaching program.
+- Connect it to a domain-specific training simulator.
+    - simulators are supposed to generate sufficient training data for experiments and machine practice. **I'm not really sure how we can simulate training data for a use case like classfying court docket entries.**
+
+**Train Phase**:
+- Use a Microsoft training engine to generate and train a deep reinforcement learning model.
+  - This requires "high level domain models" with appropriate RL algorithms and neural networks. **I'm not sure what these "high level domaim models" are...maybe you can use the Satyrn domain ontologies.**
+
+**Deploy Phase**:
+- Deploys the trained model to the target application in the cloud, on-premises, or embedded on site.
+
+Hopefully now you can see why I did not think this was the right approach for this Capstone.
+
+#### The Machine Learning Process:
+
+![](https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/media/machine-teaching-2-3.png)
+
+1. The problem owner collects and labels data.
+2. The problem owner reviews quality of labeled data.
+3. Machine-learning experts select an algorithm, model architecture, objective function, regularizers, and cross-validation sets.
+4. Engineers train the model cyclically, adjusting the features or creating new features to improve model accuracy and speed.
+5. The model is tested on a small sample. If the system doesn't do well in the test, the preceding steps are repeated.
+6. Model performance is monitored in the field. If performance falls below a critical level, the model is modified by repeating the preceding steps.
+
+Machine teaching automates the creation of such models, easing the need for manual intervention in the learning process to improve feature selection or examples, or tweaking of hyper-parameters. In effect, **machine teaching introduces a level of abstraction into the AI elements of the model, allowing the developer to focus on the domain knowledge.** This abstraction also allows the AI algorithm to be replaced by new more innovative algorithms in time, without requiring a respecification of the problem.
+
+#### The role of the teacher
+The role of the teacher is to optimize the transfer of knowledge to the learning algorithm so it can generate a useful model. 
+Teachers also play a central role in data collection and labeling. Teachers can:
+- filter unlabeled data to select specific examples.
+- look at the available example data and guess its label based on their own intuition or biases.
+- Similarly, given two features on a large unlabeled set, teachers can conjecture that one is better than the other.
+
+The following image shows the high-level process of machine teaching:
+
+![](https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/media/machine-teaching-2-6.png)
+
+1. The teacher first questions whether a training set is realizable.
+2. If the training set isn't realizable, the teacher determines whether the issue is due to inadequate labeling or feature deficiencies. After correcting the labeling or adding features, the teacher again assesses whether the training set is realizable.
+3. If the training set is realizable, the teacher assesses whether training quality criteria are being met.
+4. If quality criteria aren't being met, the teacher finds the test errors and adds the fixes to the training set, then repeats the assessment steps.
+5. Once the training set is realizable and quality criteria are met, the process finishes.
+
