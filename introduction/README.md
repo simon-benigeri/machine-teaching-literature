@@ -9,15 +9,20 @@
 **Machine teaching** focuses on the *efficacy of the teachers given the learners*. It follows and extends principles of software engineering and programming languages. The emphasis is on the teacher, the teacher's interaction with the data, as well as techniques and design principles of interaction and visualization. 
 
 **Curriculum learning** focuses on *improving the accuracy of learners* by presenting examples not randomly, but organized in a meaningful order which illustrates gradually more concepts, and gradually more complex ones. Curriculum learning lies at the intersection of machine learning and machine teaching and we can use it to build a better MT system.([Bengio et al., 2009](https://ronan.collobert.com/pub/matos/2009_curriculum_icml.pdf))
-- The following paper provides a recent overview of curriculum learning. [Curriculum Learning: A Survey (Soviany et al., 2021)](https://arxiv.org/abs/2101.10382)
+  - The following paper provides a recent overview of curriculum learning. [Curriculum Learning: A Survey (Soviany et al., 2021)](https://arxiv.org/abs/2101.10382)
 
-[**Iterative Machine Teaching (Liu, Dai et al., 2017)**](https://arxiv.org/abs/1705.10470) studies a machine teaching paradigm where the learner uses an iterative algorithm and a teacher can feed examples sequentially and intelligently based on the current performance of the learner.
+[**Iterative Machine Teaching (Liu, Dai et al., 2017)**](https://arxiv.org/abs/1705.10470) studies a machine teaching paradigm where the learner uses an iterative algorithm and a teacher can feed examples sequentially and intelligently based on the current performance of the learner. This area of research helps us think about how to account for:
+  - how much the teacher knows about the learner
+  - difficulty of samples
+  - informativeness/usefulness of samples
 
 ![](images/iterative_machine_teaching.png)
 
-- [Teaching a black-box learner](http://proceedings.mlr.press/v97/dasgupta19a.html) considers the problem of teaching a learner whose representation and hypothesis class are unknown: that is, the learner is a black box. A teacher who does not interact with the learner can do no better than providing random examples. However, by interacting with the black-box learner, a teacher can efficiently find a set of teaching examples that is a provably good approximation to the optimal set.
+The paper [**Teaching a black-box learner(Dasgupta et al., 2019)**](http://proceedings.mlr.press/v97/dasgupta19a.html) considers the problem of teaching a learner whose representation and hypothesis class are unknown: that is, the learner is a black box. A teacher who does not interact with the learner can do no better than providing random examples. However, by interacting with the black-box learner, a teacher can efficiently find a set of teaching examples that is a provably good approximation to the optimal set.
 
-**Inverse reinforcement learning** and **Reinforcement learning** have been put forward in some machine teaching papers as a way to optimize the machine teaching process. They are used in systems like **[Microsoft Project Bonsai](https://azure.microsoft.com/en-us/services/project-bonsai/)**. For now we will not explore this.
+**Knowledge decomposition** is the process of identifying and expressing useful knowledge. In Machine Teaching experts incrementally building semantic ML models in efficient ways. The paper [Understanding and Supporting Knowledge Decomposition for Machine Teaching (Ng, Suh, Ramos., 2020)](https://www.microsoft.com/en-us/research/publication/understanding-and-supporting-knowledge-decomposition-for-machine-teaching/) looks at this process for text or document classification.
+
+**Inverse reinforcement learning** and **deep reinforcement learning** have been put forward in some machine teaching papers as a way to optimize the machine teaching process. They are used in systems like **[Microsoft Project Bonsai](https://azure.microsoft.com/en-us/services/project-bonsai/)**. For now we will not explore this. The key idea is that given a teacher's sequential input, we can learn a policy to interpret these inputs so as to maximize the efficacy of the learner.
 
 # Papers
 
@@ -274,4 +279,9 @@ def lf_contains_keyword(x: str, keyword: str, label: str):
 5. Some ways to thing about the usefulness of an example:
     - the correlation between discrepancy (some distance between teacher and learner) and the information (difficulty) of an example. If the information of the example has large correlation with the discrepancy, it means that this example is very useful in this teaching iteration.
 6. There are a few models of a teacher's knowledge about the learner. We did not explore those but these models can help make the right choices in designing an iterative teaching process.
+
+## [Understanding and Supporting Knowledge Decomposition for Machine Teaching (Ng, Suh, Ramos., 2020)](https://www.microsoft.com/en-us/research/publication/understanding-and-supporting-knowledge-decomposition-for-machine-teaching/)
+
+Machine teaching (MT) is an emerging field that studies non-machine learning (ML) experts incrementally building semantic ML models in efficient ways. While MT focuses on the types of knowledge a human teacher provides a machine learner, not much is known about how people perform or can be supported in this essential task of identifying and expressing useful knowledge. We refer to this process as knowledge decomposition. To address the challenges of this type of Human-AI collaboration, we seek to build foundational frameworks for understanding and supporting knowledge decomposition. We present results of a study investigating what types of knowledge people teach, what cognitive processes they use, and what challenges they encounter when teaching a learner to classify text documents. From our observations, we introduce design opportunities for new tools to support knowledge decomposition. Our findings carry implications for applying the benefits of knowledge decomposition to MT and ML.
+
 
