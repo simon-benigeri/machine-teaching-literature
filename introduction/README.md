@@ -24,9 +24,9 @@ The paper [**Teaching a black-box learner(Dasgupta et al., 2019)**](http://proce
 
 **Inverse reinforcement learning** and **deep reinforcement learning** have been put forward in some machine teaching papers as a way to optimize the machine teaching process. They are used in systems like **[Microsoft Project Bonsai](https://azure.microsoft.com/en-us/services/project-bonsai/)**. For now we will not explore this. The key idea is that given a teacher's sequential input, we can learn a policy to interpret these inputs so as to maximize the efficacy of the learner.
 
-# Papers
+# Papers and articles
 
-## [Machine Teaching - A New Paradigm for Building Machine Learning Systems (Simard et. al, 2017)](https://arxiv.org/abs/1707.06742)
+## Paper 1: [Machine Teaching - A New Paradigm for Building Machine Learning Systems (Simard et. al, 2017)](https://arxiv.org/abs/1707.06742)
 
 Machine Teaching introduces a way to decouple knowledge about machine learning algorithms from the process of teaching.   
 
@@ -129,7 +129,7 @@ MT follows and extends principles of software engineering and programming langua
 
 ![](images/machine_teaching_process_simard.png)
 
-## Microsoft [Machine Teaching Overview](https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/articles/machine-teaching)
+## Paper 2: [Microsoft Machine Teaching Overview](https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/articles/machine-teaching)
 
 Microsoft describes Machine Teaching as a new paradigm for machine learning systems that:
 - Combines subject matter expertise from human domain experts with AI and ML.
@@ -207,7 +207,7 @@ The role of the teacher is described a bit more concreteley. The teacher:
 #### We need to provide to handle the machine learning part ourselves
 The ML training needs to be abstracted away from the user. It does not have to use complicated algorithms. For example, given a 
 
-## [Machine Teaching - An Inverse Problem to Machine Learning and an Approach Toward Optimal Education (Zhu, 2015)](https://www.semanticscholar.org/paper/Machine-Teaching%3A-An-Inverse-Problem-to-Machine-and-Zhu/f83ca18f3834d45a70e9b54578e2c33870dde67d) and [An Overview of Machine Teaching (Zhu et al., 2018)](https://arxiv.org/abs/1801.05927)
+## Papers 3 and 4: [Machine Teaching - An Inverse Problem to Machine Learning and an Approach Toward Optimal Education (Zhu, 2015)](https://www.semanticscholar.org/paper/Machine-Teaching%3A-An-Inverse-Problem-to-Machine-and-Zhu/f83ca18f3834d45a70e9b54578e2c33870dde67d) and [An Overview of Machine Teaching (Zhu et al., 2018)](https://arxiv.org/abs/1801.05927)
 
 These two papers are described together because they come from the same author and the takeaways we need for our problem are the same in both papers.
 
@@ -243,7 +243,7 @@ We can reduce the set of possible learners by mapping use cases or taks to speci
 Our task is therefore to find an interaction where the user can create a good enough dataset to train a given model. And we want to minimize the cost of creating this dataset.
 
 
-## [Iterative Machine Teaching (Liu, Dai et al., 2017)](https://arxiv.org/abs/1705.10470)
+## Paper 5: [Iterative Machine Teaching (Liu, Dai et al., 2017)](https://arxiv.org/abs/1705.10470)
 
 This paper studies a machine teaching paradigm where the learner uses an iterative algorithm and a teacher can feed examples sequentially and intelligently based on the current performance of the learner.
 
@@ -280,8 +280,16 @@ def lf_contains_keyword(x: str, keyword: str, label: str):
     - the correlation between discrepancy (some distance between teacher and learner) and the information (difficulty) of an example. If the information of the example has large correlation with the discrepancy, it means that this example is very useful in this teaching iteration.
 6. There are a few models of a teacher's knowledge about the learner. We did not explore those but these models can help make the right choices in designing an iterative teaching process.
 
-## [Understanding and Supporting Knowledge Decomposition for Machine Teaching (Ng, Suh, Ramos., 2020)](https://www.microsoft.com/en-us/research/publication/understanding-and-supporting-knowledge-decomposition-for-machine-teaching/)
+## Paper 6: [Understanding and Supporting Knowledge Decomposition for Machine Teaching (Ng, Suh, Ramos., 2020)](https://www.microsoft.com/en-us/research/publication/understanding-and-supporting-knowledge-decomposition-for-machine-teaching/)
 
-Machine teaching (MT) is an emerging field that studies non-machine learning (ML) experts incrementally building semantic ML models in efficient ways. While MT focuses on the types of knowledge a human teacher provides a machine learner, not much is known about how people perform or can be supported in this essential task of identifying and expressing useful knowledge. We refer to this process as knowledge decomposition. To address the challenges of this type of Human-AI collaboration, we seek to build foundational frameworks for understanding and supporting knowledge decomposition. We present results of a study investigating what types of knowledge people teach, what cognitive processes they use, and what challenges they encounter when teaching a learner to classify text documents. From our observations, we introduce design opportunities for new tools to support knowledge decomposition. Our findings carry implications for applying the benefits of knowledge decomposition to MT and ML.
+Knowledge decomposition is the process of identifying and expressing useful knowledge. In Machine Teaching experts incrementally building semantic ML models in efficient ways. This paper seeks to build foundational frameworks for understanding and supporting this process. The authors looked at the task of teaching a learner to classify text documents. They investigated:
+  - what types of knowledge people teach
+  - what cognitive processes they use
+  - what challenges they encouter when teaching a learner
+
+The paper offers some design ideas for supporting knowledge decomposition in machine teaching and this is beneficial for building systems that help domain experts infuse a learner with concepts.
 
 
+## Paper 7: [Whither AutoML? Understanding the Role of Automation in Machine Learning Workflows (Xin, Wu, et al., 2021)](https://arxiv.org/abs/2101.04834)
+
+Paper provided by Andrew. Sorry I did not get to a summary.
