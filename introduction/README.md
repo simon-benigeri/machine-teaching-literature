@@ -255,9 +255,9 @@ There are different categories of teachers, based on how much information the te
 
 1. It is useful to consider teachers as having different levels of information about the models.
 2. An iterative teaching process can help achieve fast convergence in the learner model.
-  - Can we flip this around and ask? **Can an iterative process help achieve fast creation of a minimal training set?**
+    - Can we flip this around and ask? **Can an iterative process help achieve fast creation of a minimal training set?**
 3. The teacher and the student (learner) do not need the same representation of a sample of data. They need to be deterministically related though.
-  - eg. or text classification applications, the learner can work with pretrained word or sentence embeddings of a sample and the teacher can work with the sample itself.
+    - eg. or text classification applications, the learner can work with pretrained word or sentence embeddings of a sample and the teacher can work with the sample itself.
   - the teacher can work with a labeling function's logic and the student can work with the labeling function itself.
 
 ```python
@@ -269,9 +269,9 @@ def lf_contains_keyword(x: str, keyword: str, label: str):
     return label if keyword in x.text.lower() else ""
 ```
 4. Some ways to think about the difficulty of an example: 
-  - Given the model's parameters, what is the probability of a wrong label?
-  - How much information does an example carry? (similar to curriculum learning)
+    - Given the model's parameters, what is the probability of a wrong label?
+    - How much information does an example carry? (similar to curriculum learning)
 5. Some ways to thing about the usefulness of an example:
-  - the correlation between discrepancy (some distance between teacher and learner) and the information (difficulty) of an example. If the information of the example has large correlation with the discrepancy, it means that this example is very useful in this teaching iteration.
+    - the correlation between discrepancy (some distance between teacher and learner) and the information (difficulty) of an example. If the information of the example has large correlation with the discrepancy, it means that this example is very useful in this teaching iteration.
 6. There are a few models of a teacher's knowledge about the learner. We did not explore those but these models can help make the right choices in designing an iterative teaching process.
 
