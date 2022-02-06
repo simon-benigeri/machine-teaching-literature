@@ -84,23 +84,45 @@ MT follows and extends principles of software engineering and programming langua
 - A generic feature is a set of related feature functions.
 - Decomposition is the act of using simpler concepts to express more complex ones.
 
-![](images/teaching_consepts.png)
+![](images/teaching_concepts.png)
 
 #### Principles for machine teaching according to Simard et al.
 
 - Universal Teaching Language
-    - in order to support and enable different teachers, Simard et al. propose the standardisation of a language as one simple and easy-to-learn interface that is agnostic of ML algorithms, but that provides access to their power by enabling to exchange them according to the best match for the concept to learn.
+    - To support different teachers, MT systems need a standard language. The authors propose a simple and easy-to-learn interface:
+        - that is agnostic of ML algorithms
+          - data exploration logic consistent across different algorithms
+          - feature and concept definition consistent across different algorithms
+        - that enables teachers to exchange them according to the best fit for the concept to learn
+          - eg. swapping a BERT model for one trained on a particular domain
+          - eg. swapping models and feature selection algorithms for image classification to models used for text classification
+          -  classifier for a language model
 - Feature completeness 
-    - all desired target concepts should be “ ‘realisable’ through a composition of models and features”. The assumption is that it is the system’s responsibility to provide feature completeness, so that the teacher can focus on exploring, adding and discriminating features and examples to augment the capacity of the system to model the concept.
+    - all desired target concepts should be “ ‘realisable’ through a composition of models and features”. 
+    - a key assumption in the paper is that it is the system’s responsibility to provide feature completeness
+      - so that the teacher can focus on exploring, adding and discriminating features and examples to augment the capacity of the system to model the concept.
 - Rich and diverse sampling set 
-    - the data set should enable the teacher to explore it “to express knowledge through selection”. Simard et al. propose the need for new ways of collecting data that retain as much of the semantic value of data as possible. That they imply that storing data indiscriminately could be a solution (“effort of storing data is negligible compared to the cost of teaching”).
+    - the dataset should enable the teacher to explore it “to express knowledge through selection”.
+    - Simard et al. propose the need for new ways of collecting data that retain as much of the semantic value of data as possible. 
+    - They imply that storing data indiscriminately could be a solution (“effort of storing data is negligible compared to the cost of teaching”).
 - Distribution robustness 
-    - teacher should be able to explore and label freely without concerns. A critical assumption made Simard et al. is that a teacher will be able reach a correct teaching outcome (i.e., a robust model that is correct for any example) given a rich and diverse sampling set, feature completeness and ML algorithms that are robust to covariate shift. Covariate shifts refer to changes in the distribution of the new examples that make deployed model or running in the wild, to loose efficacy. It is one of causes for models to break and that require a new model-building iteration. I would say that this is a very difficult conjunction of factors, and should act as a constrain of application of the MT process.
+    - teacher should be able to explore and label freely without concerns
+    - Another assumption made is that a teacher will be able reach a correct teaching outcome (i.e., a robust model that is correct for any example) given a rich and diverse sampling set, feature completeness, and ML algorithms that are robust to covariate shift. 
+    - Covariate shifts refer to changes in the distribution of the new examples that decrease the efficacy of a deployed model.
+      - Covariate shifts are one of causes for models to break and that require a new model-building iteration. 
+      - This is definitely a constraint for MT applications and the MT process.
 - Modular development 
-    - MT should support decomposition in concept modelling through modular development (i.e. decomposing concepts into sub-concepts, using models as features of other models). Simard et. postulate that it can be achieved by standardising interfaces for models and features, in analogy to elements of integrated development environments, such as solution, projects and project dependencies.
+    - MT should support decomposition in concept modelling through modular development
+      - decomposing concepts into sub-concepts, 
+      - using models as features of other models
+      - The authors think we can achieve this by standardising interfaces for models and features, in analogy to elements of integrated development environments, such as solution, projects and project dependencies.
 - Version Control 
-    - all teacher’s actions are relevant and contribute to build a concept “program”. Hence they should be stored, analog to code versioning and commits, and used to facilitate collaboration between different teachers and integrate their contributions.
+    - all teacher’s actions are relevant and contribute to build a concept “program”. 
+    - they should be stored, analog to code versioning and commits, and used to facilitate collaboration between different teachers and integrate their contributions.
 
+#### Example of a Machine Teaching Process
+
+![](images/machine_teaching_process_simard.png)
 
 ## Microsoft [Machine Teaching Overview](https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/articles/machine-teaching)
 
@@ -216,3 +238,33 @@ We can reduce the set of possible learners by mapping use cases or taks to speci
 Our task is therefore to find an interaction where the user can create a good enough dataset to train a given model. And we want to minimize the cost of creating this dataset.
 
 
+## Iterative Machine Teaching (Liu, Dai et al., 2017)
+
+This paper studies a machine teaching paradigm where the learner uses an iterative algorithm and a teacher can feed examples sequentially and intelligently based on the current performance of the learner.
+
+![](images/iterative_machine_teaching.png)
+
+### Achieving fast convergence in the learner model
+
+Instead of constructing a minimal training set for learners, iterative machine teaching focuses on achieving fast convergence in the
+learner model. 
+
+There are different categories of teachers, based on how much information the teacher has from the learner model. For each level of information, the paper proposes an algorithm to achieve fast convergence.
+
+### Key Ideas for us:
+
+1. It is useful to consider teachers as having different levels of information about the models.
+2. An iterative teaching process can help achieve fast convergence in the learner model.
+  - Can we flip this around and ask? **Can an iterative process help achieve fast creation of a minimal training set?**
+3. The teacher and the student (learner) do not need the same representation of a sample of data. They need to be deterministically related though.
+  - eg. or text classification applications, the learner can work with pretrained word or sentence embeddings of a sample and the teacher can work with the sample itself.
+  - the teacher can work with a labeling function's logic and the student can work with the labeling function itself.
+
+```python
+from snorkel.labeling import labeling_function
+
+@labeling_function()
+def lf_contains_keyword(x: str, keyword: str, label: str):
+    # Return a given label if keyword in sample text
+    return label if keyword in x.text.lower() else ""
+```
