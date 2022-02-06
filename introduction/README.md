@@ -186,9 +186,31 @@ These two papers are described together because they come from the same author a
 
 Machine Teaching is the process of finding an optimal training set given a learner. 
 
+We can view a machine learning algorithm *A* as a function that maps the space of training sets **D** to a model space **&theta;**:
+
 ![](Image/MT_optimal_training_set.png)
 
-Let's say we have a target *learner* or model $\theta$<sup>*</sup>
+Let's say we have a target *learner* or model *&theta;<sup>*</sup>*. Given a training set *D* in **D**, machine learning returns a model *A(D)* in **&theta;**. This is a many to one relation. Given a target model *&theta;<sup>*</sup>* the inverse function *A<sup>-1</sup>(&theta;<sup>*</sup>)* will return the **set of training sets that will result in** *&theta;<sup>*</sup>*.
 
-The authors discuss how we can apply this problem to the education domain. The paper is mostly theoretical, but it helps us focus on the key objective:
+Machine teaching aims to find the optimal member in *A<sup>-1</sup>(&theta;<sup>*</sup>)*. This is the training set with minimal cost, where cost might be:
+- the training set size
+- generalization error
+- etc.
+
+Finding *A<sup>-1</sup>* is difficult. It may not even exist for some target model. This is the problem that machine teaching focuses on.
+
+### What does this mean for us?
+
+Practically speaking, we need to consider:
+- **the target model**: a learner that is good enough for the user's problem
+- **the optimal dataset** => we can relax this to think about **a good enough dataset**. In other words, a dataset that will yield good enough performance for the user's problem.
+
+#### Reducing the set of possible learners
+
+We can reduce the set of possible learners by mapping use cases or taks to specific models. For example, for a text classification task, the target learner can be chosen by the application builder. We can choose to use an ngram based feature extraction followed by an SVM. Or we can choose to throw the labeled dataset into one of the faster and cheaper pretrained language models (like DistilBERT) with a classification layer.
+
+#### Translating "finding an optimal training set" into something we can do:
+
+Our task is therefore to find an interaction where the user can create a good enough dataset to train a given model. And we want to minimize the cost of creating this dataset.
+
 
