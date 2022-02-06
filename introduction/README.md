@@ -190,9 +190,9 @@ We can view a machine learning algorithm *A* as a function that maps the space o
 
 ![](Image/MT_optimal_training_set.png)
 
-Let's say we have a target *learner* or model *&theta;<sup>*</sup>*. Given a training set *D* in **D**, machine learning returns a model *A(D)* in **&theta;**. This is a many to one relation. Given a target model *&theta;<sup>*</sup>* the inverse function *A<sup>-1</sup>(&theta;<sup>*</sup>)* will return the **set of training sets that will result in** *&theta;<sup>*</sup>*.
+Let's say we have a target *learner* or model *&theta;<sup>*</sup>*. Given a training set *D* in **D**, machine learning returns a model *A(D)* in **&theta;**. This is a many to one relation. Given a target model *&theta;<sup>*</sup>* the inverse function *A<sup>-1</sup>(&theta;*<sup>*</sup>*)* will return the **set of training sets that will result in** *&theta;<sup>*</sup>*.
 
-Machine teaching aims to find the optimal member in *A<sup>-1</sup>(&theta;<sup>*</sup>)*. This is the training set with minimal cost, where cost might be:
+Machine teaching aims to find the optimal member in *A<sup>-1</sup>(&theta;*<sup>*</sup>*)*. This is the training set with minimal cost, where cost might be:
 - the training set size
 - generalization error
 - etc.
