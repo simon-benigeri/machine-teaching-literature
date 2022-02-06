@@ -13,7 +13,7 @@
 
 [**Iterative Machine Teaching (Liu, Dai et al., 2017)**](https://arxiv.org/abs/1705.10470) studies a machine teaching paradigm where the learner uses an iterative algorithm and a teacher can feed examples sequentially and intelligently based on the current performance of the learner.
 
-<img width="433" alt="Screen Shot 2021-09-29 at 10 08 07 AM" src="https://user-images.githubusercontent.com/44941782/135296788-e3ac02b5-9069-4245-adbd-53de59918699.png">
+![](images/iterative_machine_teaching.png)
 
 - [Teaching a black-box learner](http://proceedings.mlr.press/v97/dasgupta19a.html) considers the problem of teaching a learner whose representation and hypothesis class are unknown: that is, the learner is a black box. A teacher who does not interact with the learner can do no better than providing random examples. However, by interacting with the black-box learner, a teacher can efficiently find a set of teaching examples that is a provably good approximation to the optimal set.
 
@@ -83,6 +83,8 @@ MT follows and extends principles of software engineering and programming langua
 - A schema is a relationship graph between concepts.
 - A generic feature is a set of related feature functions.
 - Decomposition is the act of using simpler concepts to express more complex ones.
+
+![](images/teaching_consepts.png)
 
 #### Principles for machine teaching according to Simard et al.
 
@@ -188,7 +190,7 @@ Machine Teaching is the process of finding an optimal training set given a learn
 
 We can view a machine learning algorithm *A* as a function that maps the space of training sets **D** to a model space **&theta;**:
 
-![](Image/MT_optimal_training_set.png)
+![](images/MT_optimal_training_set.png)
 
 Let's say we have a target *learner* or model *&theta;<sup>*</sup>*. Given a training set *D* in **D**, machine learning returns a model *A(D)* in **&theta;**. This is a many to one relation. Given a target model *&theta;<sup>*</sup>* the inverse function *A<sup>-1</sup>(&theta;*<sup>*</sup>*)* will return the **set of training sets that will result in** *&theta;<sup>*</sup>*.
 
