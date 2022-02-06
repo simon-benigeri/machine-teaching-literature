@@ -11,3 +11,5 @@ saved
 
 .DS_STORE
 /logs/
+*.csv
+/motion\ classification/datasets/court_docket_entries/

@@ -1,11 +1,11 @@
-name: machine-teaching
+name: motion-classification
 channels:
   - anaconda
   - conda-forge
   - pytorch
   - defaults
 dependencies:
-  - python>=3.7,<3.10
+  - python<=3.9
   - pip
   - numpy
   - pandas
@@ -14,7 +14,6 @@ dependencies:
   - tqdm
   - scikit-learn
   - imbalanced-learn
-  - textblob
   - snorkel
   - spacy
   - spacy-model-en_core_web_sm
