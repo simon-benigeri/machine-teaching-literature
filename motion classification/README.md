@@ -1,2 +1,2 @@
-# motion-classification
+# motion classification
 Classifying court docket entries with snorkel
