@@ -282,7 +282,7 @@ def lf_contains_keyword(x: str, keyword: str, label: str):
 
 ## Paper 6: [Understanding and Supporting Knowledge Decomposition for Machine Teaching (Ng, Suh, Ramos., 2020)](https://www.microsoft.com/en-us/research/publication/understanding-and-supporting-knowledge-decomposition-for-machine-teaching/)
 
-Knowledge decomposition is the process of identifying and expressing useful knowledge. In Machine Teaching experts incrementally building semantic ML models in efficient ways. This paper seeks to build foundational frameworks for understanding and supporting this process. The authors looked at the task of teaching a learner to classify text documents. They investigated:
+Knowledge decomposition is the process of identifying and expressing useful knowledge. In Machine Teaching experts incrementally build semantic ML models in efficient ways. This paper seeks to build foundational frameworks for understanding and supporting this process. The authors looked at the task of teaching a learner to classify text documents. They investigated:
   - what types of knowledge people teach
   - what cognitive processes they use
   - what challenges they encouter when teaching a learner
