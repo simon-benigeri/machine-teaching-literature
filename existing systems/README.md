@@ -3,18 +3,21 @@
 ## Existing Machine Teaching Systems
 Some notes about existing machine teaching systems. We can inspire ourselves from these or integrate them 
 
-### [Microsoft LUIS (Language Understanding)](https://www.luis.ai/)
+### [Microsoft - LUIS (Language Understanding)](https://www.luis.ai/)
 - Part of the Azure stack. Integrates NLU capabilities into chatbots, apps, and IOT devices.
 - Provides language models for intent classification and entity extraction.
   - Users can create app, bot, or device specific dictionaries. These are leveraged by the language models.
 - Uses active learning to help with continuous improvement.
 
-### [Microsoft Bonsai](https://docs.microsoft.com/en-us/bonsai/product/)
+### [Microsoft - Project Bonsai](https://docs.microsoft.com/en-us/bonsai/product/)
 - Part of the Azure stack. Creates autonomous systems for industrial applications.
 - A machine teaching platform that leverages:
   - Instructions from engineers (domain expertise)
   - Simulation (for training)
   - Deep reinforcement learning (for optimal control)
+- Some more links:
+  - [Autonomous Systems - Project Bonsai - How it Works](https://www.microsoft.com/en-us/ai/autonomous-systems-project-bonsai-how-it-works)
+  - [Azure - Project Bonsai](https://azure.microsoft.com/en-us/services/project-bonsai)
 
 ### TODO:
 1. There are a couple of interesting systems described in papers storednin this directory. I need to gather all my notes on the papers in this repo and provide brief summaries (enough for you to know why they should pick up a paper and read it yourself)
