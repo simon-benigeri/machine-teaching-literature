@@ -1,4 +1,4 @@
-# 🚀 Motion Classifier Tutorial: Data Labeling with Snorkel
+# 🚀 Motion Classification With Snorkel: Introducing the Task
 
 In this tutorial, we will walk through the process of using Snorkel to build a training set for classifying court docket entries as MOTION or NOT MOTION.
 
