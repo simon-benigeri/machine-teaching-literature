@@ -12,7 +12,9 @@ You will find an overview of the field, including:
 
 You will find links, papers, paper summaries, and descriptions for some existing machine teaching sytems. 
 
-*Note on Snorkel*: Snorkel is not a machine teaching system, but we can use some of the functionalities provided by the libraries in the Snorkel "universe" to build a machine teaching prototype.
+Eventually this directory will have 2 folders: MT systems and Data Programming.
+
+**Note**: Data programming is not machine teaching, but we can use data programming and weak supervision functionalities provided by libraries like Snorkel to build a machine teaching prototype.
 
 ## [Need to read](https://github.com/simon-benigeri/machine-teaching-literature/tree/main/need%20to%20read)
 
