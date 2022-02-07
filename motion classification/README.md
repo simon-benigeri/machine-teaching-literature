@@ -7,7 +7,7 @@ Classifying court docket entries with snorkel.
 Some notes introducting Snorkel.
 **Status: IN PROGRESS. NEED TO MOVE NOTES FROM DIFFERENT PLACES INTO ONE FILE**
 
-### motion_classification_introduction.md
+### [motion_classification_introduction.md](https://github.com/simon-benigeri/machine-teaching-literature/blob/main/motion%20classification/motion_classification_introduction.md)
 Some notes introducting the motion classification task with Snorkel.
 **Status: IN PROGRESS. NEED TO MOVE NOTES FROM DIFFERENT PLACES INTO ONE FILE**
 
