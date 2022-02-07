@@ -2,7 +2,7 @@
 
 This repo organizes my notes on machine teaching related papers.
 
-## [Introduction to Machine Teaching](https://github.com/simon-benigeri/machine-teaching-literature/tree/main/introduction)
+## [Introduction to Machine Teaching](https://github.com/simon-benigeri/machine-teaching-literature/tree/main/introduction%20to%20machine%20teaching)
 
 You will find an overview of the field, including:
 - useful definitions
