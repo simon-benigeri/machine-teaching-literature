@@ -27,8 +27,8 @@ The notebook contains:
   - code to train a label model with Snorkel. This aggregates the labeling functions.
   - code to programmatically label the dataset with the label model. This can be done with hard or soft (probabilistic) labels.
   - code to train and evaluate a basic text classifier on the programmatically labeled data.
-  - some comments on problems encountered along the way, and some solutions.
-  - come comments on how to order all of these functionalities so as to define an interaction for the user to define good labeling functions.
+  - comments on problems encountered along the way, and some solutions.
+  - comments on how to order all of these functionalities so as to define an interaction for the user to create a good labeling function set.
 
 #### STATUS: IN PROGRESS
 
