@@ -9,11 +9,11 @@ Some notes introducting Snorkel.
 
 ### [motion_classification_introduction.md](https://github.com/simon-benigeri/machine-teaching-literature/blob/main/motion%20classification/motion_classification_introduction.md)
 Some notes introducting the motion classification task with Snorkel.
-**Status: IN PROGRESS. NEED TO MOVE NOTES FROM DIFFERENT PLACES INTO ONE FILE**
+**Status: IN PROGRESS. NEED TO MOVE NOTES FROM DIFFERENT PLACES INTO THIS FILE**
 
-### motion_classification_final_comments.md
+### [motion_classification_final_comments.md](https://github.com/simon-benigeri/machine-teaching-literature/blob/main/motion%20classification/motion_classification_final_comments.md) 
 Some notes discussing future improvements or necessary functionalities to build a machine teaching system for motion classification with Snorkel. 
-**Status: IN PROGRESS. NEED TO MOVE NOTES FROM DIFFERENT PLACES INTO ONE FILE**
+**Status: IN PROGRESS. NEED TO MOVE NOTES FROM DIFFERENT PLACES INTO THIS FILE**
 
 ### [binary__baseline.ipynb](https://github.com/simon-benigeri/machine-teaching-literature/blob/main/motion%20classification/binary__baseline.ipynb)
 
