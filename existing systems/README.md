@@ -1,6 +1,6 @@
 # machine-teaching-literature
 
-## Existing Systems
+## Existing Machine Teaching Systems
 Some notes about existing machine teaching systems. We can inspire ourselves from these or integrate them 
 
 ### [Microsoft LUIS (Language Understanding)](https://www.luis.ai/)
@@ -19,7 +19,7 @@ Some notes about existing machine teaching systems. We can inspire ourselves fro
 ### TODO:
 1. There are a couple of interesting systems described in papers storednin this directory. I need to gather all my notes on the papers in this repo and provide brief summaries (enough for you to know why they should pick up a paper and read it yourself)
 
-## Designing a Machine Teaching system with Data Programming
+## Designing a Machine Teaching system with Data Programming and Weak Supervision
 
 ### TODO:
 1. Put intro to snorkel here. Include description of data programming, weak supervision, and training on noisy labels.
