@@ -4,13 +4,31 @@
 Some notes about existing machine teaching systems. We can inspire ourselves from these or integrate them 
 
 ### TODO:
-1. Put all data programming stuff in one place
-2. Put snorkel libraries and expansions there too
-3. Gather all my notes on the papers in this repo and provide brief summaries (enough for Andrew and Andong to know why they should pick up a paper and read it themselves)
+1. There are a couple of interesting systems described in papers storednin this directory. I need to gather all my notes on the papers in this repo and provide brief summaries (enough for you to know why they should pick up a paper and read it yourself)
+
+## Designing a Machine Teaching system with Data Programming
+
+### TODO:
+1. Put intro to snorkel here. Include description of data programming, weak supervision, and training on noisy labels.
+2. Explain why Data Programming is a good idea
+  - MT as finding a training set.
+    - the optimal training set has minimum cost and generalization error
+      - we can reduce the cost not only by intelligently exploring samples (by informativeness and difficulty) but by defining functions to programmatically label the data
+        - Data Programming is FAST. We can find an interaction through which the user iteratively explores data and creates/edits labeling functions until the labeling functions sufficiently cover the dataset. Then the system can aggregate these functions and train a model.
+      - we can use data science skills (balancing the dataset, data augmentation, cross validation, hyperparameter tuning, model selection, etc.) to help with generalization error
+  - MT as infusing domain expertise or concepts.
+    - users can define labeling functions to teach concepts.
+      - using keywords, regex, distant supervision, etc...
+    - we need to have one interface for users to communicate concepts in such a way that the system can parse them into labeling functions. Given a set of labeling functions, the system can evaluates them, aggregates them, etc.
+      - can we map some of the design techniques in Knowledge Decomposition paper to types of labeling functions?
+      - given types of labeling functions, can we write code to make this function technically accessible?
+        - eg. User is prompted "Give me a keyword and the corresponding label". Machine uses tuple (keyword, label) to create a labeling function.
+3. Include all major links to snorkel papers and tutorials here.
+4. Cleanup the notes below so that they can find their way around Snorkel related libraries.
 
 ### Snorkel Flow by [Snorkel.ai](https://snorkel.ai/platform/#how-it-works)
 
-Existing commercial system based off of SNORKEL.
+Existing commercial system based off of Snorkel.
 Snorkel is not quite a machine teaching system, but it can be used to create one. We can define an intereaction where users rapidly annotate data.
 
 #### Key functionality: Programmatically labeling data + UI
