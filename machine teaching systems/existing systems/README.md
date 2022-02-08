@@ -1,6 +1,6 @@
 
 # Existing Machine Teaching Systems
-Some notes about existing machine teaching systems. We can inspire ourselves from these or integrate them 
+Some notes about existing machine teaching systems. We can inspire ourselves from these to think about building out own.
 
 ## [Microsoft - LUIS (Language Understanding)](https://www.luis.ai/)
 - Part of the Azure stack. Integrates NLU capabilities into chatbots, apps, and IOT devices.
