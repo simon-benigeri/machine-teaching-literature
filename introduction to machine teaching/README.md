@@ -332,28 +332,73 @@ The authors identified 3 categories of knowledge types that participants thought
   - Semantic concepts
     - these are dependent on label meanings
       - i.e. in the study, the labels were "Food" and "Business"
-      - eg. "types of food," "food actions/verbs," "recipe,", "types of business," "buying/selling," and "money" 
+      - e.g. "types of food," "food actions/verbs," "recipe,", "types of business," "buying/selling," and "money" 
     - for many semantic concepts, participants listed keywords or symbols
       - e.g., keywords like "cookie" and "beef" are indicators of the concept "types of food"
   - Structural concepts
     - these are independent of label meanings, but dependent on components of the data type
       - i.e. in the study, the the data type was text-based news articles)
-      - eg. "title," "sub-headers," "author," "paragraphs," "ordered lists,", "sentences," and "words"
+      - e.g. "title," "sub-headers," "author," "paragraphs," "ordered lists,", "sentences," and "words"
   - Stylistic concepts
     - these depend only on the overall data type
       - i.e. in the study, the overall data type was text
-      - eg. linguistic style concepts such as "language" (i.e., English), "tone," "informality," and "figures of speech,"
-      - eg. visual style concepts such as "font type" and "font size"
+      - e.g. linguistic style concepts such as "language" (i.e., English), "tone," "informality," and "figures of speech,"
+      - e.g. visual style concepts such as "font type" and "font size"
   - Meta concepts
     - these are independent of label meanings, independent of data type, and computable as a function of other types of knowledge
-      - eg. implicit meta concepts that require some level of subjective interpretation to determine
+      - e.g. implicit meta concepts that require some level of subjective interpretation to determine
         - "main subject", "intended audience," and "goal/intent" of a news article
-      - eg. explicit concepts that can be determined directly based on the article text
+      - e.g. explicit concepts that can be determined directly based on the article text
         - "presence," "frequency," and "repetition" of keywords or concepts
   - Task goal concepts
     - these are externally- or user-imposed constraints that are not computable from the data itself
-      - eg. "my personal interests/non-interests" such as "real or fake news" and "Thai food"
-      - eg. "my objective" such as speed and accuracy of the ML model
+      - e.g. "my personal interests/non-interests" such as "real or fake news" and "Thai food"
+      - e.g. "my objective" such as speed and accuracy of the ML model
+
+**Relationships**, or schemas, describe relations and constraints between concepts. 2 sub-categories of relationships that participants wanted to teach:
+  - Semantic relationships
+    - these are based on the meanings of labels and concepts
+      - e.g. taxonomical relationships
+        - "types of food" is a sub-concept of "food"
+        - "company" is an example of "types of business")
+      - e.g. positive/negative association
+        - "market" is associated with "business"
+        - "business" and "politics" are sometimes related
+        - "suicide" is rarely related to "food" or "business")
+      - e.g. mathematical relationships 
+        - word count is greater than five
+  - Structural relationships
+    - these are independent of label or concept meanings, but dependent on the data type
+      - e.g. co-occurrence
+        - words/concepts appear together
+        - presence of certain words/concepts in the absence of other words or concepts
+        - spatial relationships
+          - "cookie" is in the title
+          - "$" is before a number
+
+**Rules** describe how to apply/combine concepts and relationships to assign labels to documents. 2 subcategories of rules that participants wanted to teach:
+ - Procedures
+    - these are sequences of steps or if-then statements for how to assign labels to document
+      - e.g. instructions on the order in which actions should be performed
+        - First look at the title and find these keywords. Next, look at subsection headers. Then look at the body.
+      - e.g. criterion that need to be met in order to assign labels
+        - "If the frequency of these keywords is greater than 5, then label it as "Food."
+ - Weights
+   - these are degrees of strength or confidence that the user subjectively assigns to each concept, relationship, procedure, or label
+     - e.g. using the words "strong" vs. "weak"
+     - e.g. using 1-3 star rating system to indicate the importance each keyword, concept, or relationship to a label
+     - e.g. assigning numerical confidence scores to each concept
+       - If you see this set of words, then 90% sure it’s this label.
+       - If you see this other set of words, then 70% sure it’s this label.
+       - If you see this final set of words, then 50% sure it’s this label.
+
+#### 2. Types of Decomposition Structures
+
+The authorse observed 3 key dimensions along which the decomposition structures in participants’ knowledge summaries varied:
+  - degree of label distinction
+  - degree of knowledge type distinction
+  - degree of programmable rules
+
 
 
 ## Paper 7: [Whither AutoML? Understanding the Role of Automation in Machine Learning Workflows (Xin, Wu, et al., 2021)](https://arxiv.org/abs/2101.04834)
