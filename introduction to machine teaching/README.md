@@ -302,10 +302,9 @@ Machine Teaching goes beyond labeling data. Human teachers possess and can offer
 
 ### Studying knowledge decomposition in a text classification task
 
-#### Procedure
 The authors collected news articles on topics like "Food" and "Business" and asked participants to participate in 2 tasks to study knowledge decomposition.
 
-##### Labeling and annotation task
+#### Labeling and annotation task
 
 Participants were asked:
   - to find at least 2-3 examples of articles for each of the 2 labels (i.e., "Food", "Business")
@@ -319,9 +318,9 @@ Participants were asked:
     - they wrote and/or drew them on Post-it notes and large poster paper
     - participants were allowed to include any knowledge from the articles or from their own memory and to structure their knowledge summary in any way
 
-#### Results
+### Results
 
-##### 1. Types of Knowledge
+#### 1. Types of Knowledge
 
 The authors identified 3 categories of knowledge types that participants thought were useful for the learner to understand in order to perform the multi-label classification task 
   - concepts
@@ -340,6 +339,22 @@ The authors identified 3 categories of knowledge types that participants thought
     - these are independent of label meanings, but dependent on components of the data type
       - i.e. in the study, the the data type was text-based news articles)
       - eg. "title," "sub-headers," "author," "paragraphs," "ordered lists,", "sentences," and "words"
+  - Stylistic concepts
+    - these depend only on the overall data type
+      - i.e. in the study, the overall data type was text
+      - eg. linguistic style concepts such as "language" (i.e., English), "tone," "informality," and "figures of speech,"
+      - eg. visual style concepts such as "font type" and "font size"
+  - Meta concepts
+    - these are independent of label meanings, independent of data type, and computable as a function of other types of knowledge
+      - eg. implicit meta concepts that require some level of subjective interpretation to determine
+        - "main subject", "intended audience," and "goal/intent" of a news article
+      - eg. explicit concepts that can be determined directly based on the article text
+        - "presence," "frequency," and "repetition" of keywords or concepts
+  - Task goal concepts
+    - these are externally- or user-imposed constraints that are not computable from the data itself
+      - eg. "my personal interests/non-interests" such as "real or fake news" and "Thai food"
+      - eg. "my objective" such as speed and accuracy of the ML model
+
 
 ## Paper 7: [Whither AutoML? Understanding the Role of Automation in Machine Learning Workflows (Xin, Wu, et al., 2021)](https://arxiv.org/abs/2101.04834)
 
