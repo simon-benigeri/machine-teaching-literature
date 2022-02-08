@@ -19,6 +19,15 @@ Some notes about existing machine teaching systems. We can inspire ourselves fro
   - [Autonomous Systems - Project Bonsai - How it Works](https://www.microsoft.com/en-us/ai/autonomous-systems-project-bonsai-how-it-works)
   - [Azure - Project Bonsai](https://azure.microsoft.com/en-us/services/project-bonsai)
 
+### [Intel - Semi-supervised Interactive Intent Labeling (Sahai et al., 2021)](https://arxiv.org/abs/2104.13406)
+
+This paper presents a system to speed up training for intent classification in dialog systems. Developers can in interactively label and augment training data from unlabeled utterance corpora using advanced clustering and visual labeling methods. Some of the interesting ideas are:
+  - word embeddings and sentence embeddings (SBERT) for semantic similarity and clustering
+  - data augmentation techniques like oversampling to improve clustering
+  - an interaction to explore and label data that leverages the feedback that these technologies can provide
+
+![](images/SSILS_interactive_labeling_system.png)
+
 ### TODO:
 1. There are a couple of interesting systems described in papers storednin this directory. I need to gather all my notes on the papers in this repo and provide brief summaries (enough for you to know why they should pick up a paper and read it yourself)
 
