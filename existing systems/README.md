@@ -54,7 +54,13 @@ Inverse reinforcement learning (IRL) infers a reward function from demonstration
 
 Machin Teaching can help achieve the minimum set of demonstrations needed to teach a specific sequential decision-making task. The paper covers ideas like "maximally informative demonstrations."
 
-### [Using Machine Teaching in Text Analysis](https://usc-isi-i2.github.io/KDD2020workshop/papers/KGE1_paper_10.pdf)
+### [Interaction Design for Machine Teaching to Develop AI Tutors (Weitekamp III et al., 2020](https://dl.acm.org/doi/abs/10.1145/3313831.3376226)
+
+Watch this [video](https://www.youtube.com/watch?v=S9Gp2j7I5mU). It's only 30 seconds long.
+
+![](images/teaching-ai-to-teach.png)
+
+### [Cambridge Semantics, Parabole.ai - Using Machine Teaching in Text Analysis](https://usc-isi-i2.github.io/KDD2020workshop/papers/KGE1_paper_10.pdf)
 
 This paper is a case study on using Machine Teaching with knowledge graphs. It lacks detail and is pretty shots. I also wonder if they put "teaching" instead of "learning." But the paper makes the case that it is useful to leverage knowledge graphs in combination with key words, phrases, and concepts provided by subject matter experts.
 
