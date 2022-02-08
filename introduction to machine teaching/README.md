@@ -394,12 +394,39 @@ The authors identified 3 categories of knowledge types that participants thought
 
 #### 2. Types of Decomposition Structures
 
-The authorse observed 3 key dimensions along which the decomposition structures in participants’ knowledge summaries varied:
+The authors observed 3 key dimensions along which the decomposition structures in participants’ knowledge summaries varied:
   - degree of label distinction
   - degree of knowledge type distinction
   - degree of programmable rules
 
+![](images/knowledge_decomposition__Figure3.png)
 
+#### 3. Knowledge Decomposition Processes
+
+The authors observed that participants used an iterative sensemaking process to identify and express the knowledge that they wanted to teach the machine. This process is detailed in the paper and you should check it out.
+
+![](images/knowledge_decomposition__Figure4.png)
+
+#### 4. User Challenges
+The authors identified 2 major challenges that participants faced during knowledge decomposition: 
+
+1. Understanding how the learner works
+  - e.g. users assumed the learner was a decision tree
+2. Articulating abstract and implicit knowledge
+  - e.g. "target audience" of an article, or "context"
+
+Other challenges observed:
+3. Access to existing lists, dictionaries, and lexicons
+4. Flexibility to revise knowledge decomposition
+5. Feedback on knowledge usefulness and understandability
+
+### Final Comments:
+Please read this paper yourselves! I think it is really helpful in thinking about how to design a Machine Teaching system.
+Let's think about the case where we build a system with Snorkel:
+  1. We can map the types of concepts to types of labeling functions (see Types of knowledge)
+  2. We use define an interaction that supports the iterative sensemaking process described
+  3. Labeling functions can access external sources of data (Challenge 3.)
+  4. Labeling functions can iteratively be evaluated and edited (Challenges 4. and 5.) 
 
 ## Paper 7: [Whither AutoML? Understanding the Role of Automation in Machine Learning Workflows (Xin, Wu, et al., 2021)](https://arxiv.org/abs/2101.04834)
 
