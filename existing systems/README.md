@@ -19,6 +19,24 @@ Some notes about existing machine teaching systems. We can inspire ourselves fro
   - [Autonomous Systems - Project Bonsai - How it Works](https://www.microsoft.com/en-us/ai/autonomous-systems-project-bonsai-how-it-works)
   - [Azure - Project Bonsai](https://azure.microsoft.com/en-us/services/project-bonsai)
 
+### [Microsoft - Conversation Learner – A Machine Teaching Tool for Building Dialog Managers for Task-Oriented Dialog Systems (Shukla, Liden, et al., 2020)](https://arxiv.org/abs/2004.04305)
+The industry standard in task-oriented dialog systems help dialog authors define rule-based dialog managers, representing dialog flows. These are interpretable and good for simple scenarios but are too brittle/lack flexibility for complex dialogs.
+
+Typical task oriented dialog system architecture:
+
+![](images/conversation_learner__dialog_system_architecture.png)
+
+Machine-learning based approaches are more flexible, but are not interpretable and require lots of training data.
+
+This paper introduces **Conversatin Learner**. It is a machine teaching tool for building dialog managers. It combines the best of both approaches.
+  - Dialog authors can create a dialog flow using familiar tools.
+  - The dialog flow is converted into a parametric model (e.g., neural networks).
+  - Dialog authors can improve the dialog manager (i.e., the parametric model) over time by leveraging user-system dialog logs as training data through a machine teaching interface.
+
+The architecture of Conversation Learner (Top) and the development of DMs using Conversation Learner (Bottom):
+
+![](images/conversation_learner__architecture.png)
+
 ### [Intel - Semi-supervised Interactive Intent Labeling (Sahai et al., 2021)](https://arxiv.org/abs/2104.13406)
 
 This paper presents a system to speed up training for intent classification in dialog systems. Developers can in interactively label and augment training data from unlabeled utterance corpora using advanced clustering and visual labeling methods. Some of the interesting ideas are:
@@ -27,6 +45,20 @@ This paper presents a system to speed up training for intent classification in d
   - an interaction to explore and label data that leverages the feedback that these technologies can provide
 
 ![](images/SSILS_interactive_labeling_system.png)
+
+### [Machine Teaching for Inverse Reinforcement Learning: Algorithms and Applications (Brown et al., 2018)](https://arxiv.org/abs/1805.07687)
+
+This paper shows how Machine Teaching can make for more effcicient inverse reinforcement learning systems.
+
+Inverse reinforcement learning (IRL) infers a reward function from demonstrations. Given this reward function, an agent learns a policy (a distribution of actions over states) that maximizes cumulative expected rewards. In other words, the agent learns a sequential decision making task.
+
+Machin Teaching can help achieve the minimum set of demonstrations needed to teach a specific sequential decision-making task. The paper covers ideas like "maximally informative demonstrations."
+
+### [Using Machine Teaching in Text Analysis](https://usc-isi-i2.github.io/KDD2020workshop/papers/KGE1_paper_10.pdf)
+
+This paper is a case study on using Machine Teaching with knowledge graphs. It lacks detail and is pretty shots. I also wonder if they put "teaching" instead of "learning." But the paper makes the case that it is useful to leverage knowledge graphs in combination with key words, phrases, and concepts provided by subject matter experts.
+
+
 
 ### TODO:
 1. There are a couple of interesting systems described in papers storednin this directory. I need to gather all my notes on the papers in this repo and provide brief summaries (enough for you to know why they should pick up a paper and read it yourself)
