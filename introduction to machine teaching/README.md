@@ -282,13 +282,64 @@ def lf_contains_keyword(x: str, keyword: str, label: str):
 
 ## Paper 6: [Understanding and Supporting Knowledge Decomposition for Machine Teaching (Ng, Suh, Ramos., 2020)](https://www.microsoft.com/en-us/research/publication/understanding-and-supporting-knowledge-decomposition-for-machine-teaching/)
 
+### What is knowledge decomposition?
 Knowledge decomposition is the process of identifying and expressing useful knowledge. In Machine Teaching experts incrementally build semantic ML models in efficient ways. This paper seeks to build foundational frameworks for understanding and supporting this process. The authors looked at the task of teaching a learner to classify text documents. They investigated:
-  - what types of knowledge people teach
-  - what cognitive processes they use
-  - what challenges they encouter when teaching a learner
+  - what types of knowledge do people want to teach?
+  - what types of decomposition structures do people use to represent the knowledge they want to teach?
+  - what cognitive processes do people use to identify and express the knowledge they want to teach?
+  - what challenges do people face during knowledge decomposition?
 
 The paper offers some design ideas for supporting knowledge decomposition in machine teaching and this is beneficial for building systems that help domain experts infuse a learner with concepts.
 
+### Why knowledge decomposition?
+Machine Teaching goes beyond labeling data. Human teachers possess and can offer richer forms of knowledge than just labels.
+  - eg. a teacher may know about features, concepts, relationships, rules, and other strategies that are useful for recognizing dogs
+    - a teacher can select specific examples of images and label them as "Dog" or "Not Dog"
+    - a teacher can also provide semantic explanations about why an image is labeled as such
+  - this semantic information can make the teaching or labeling process more efficient
+    - because there's no need to label samples one by one
+    - because the learner can provide semantic information back to the user
+
+### Studying knowledge decomposition in a text classification task
+
+#### Procedure
+The authors collected news articles on topics like "Food" and "Business" and asked participants to participate in 2 tasks to study knowledge decomposition.
+
+##### Labeling and annotation task
+
+Participants were asked:
+  - to find at least 2-3 examples of articles for each of the 2 labels (i.e., "Food", "Business")
+    - to annotate which parts of the articles helped them determine how to label them
+    - participants were allowed to count a multi-label document as both an example of "Food" and an example of "Business"
+
+#### Knowledge summary task
+
+Participants were asked:
+  - to create a summary of all the useful knowledge they thought the machine needs in order to label articles as "Food" and/or "Business"
+    - they wrote and/or drew them on Post-it notes and large poster paper
+    - participants were allowed to include any knowledge from the articles or from their own memory and to structure their knowledge summary in any way
+
+#### Results
+
+##### 1. Types of Knowledge
+
+The authors identified 3 categories of knowledge types that participants thought were useful for the learner to understand in order to perform the multi-label classification task 
+  - concepts
+  - relationships
+  - rules 
+  - (as well as sub-categories within each)
+
+**Concepts** are ideas or notions related to the decision to be made. 5 sub-categories of concepts that participants wanted to teach:
+  - Semantic concepts
+    - these are dependent on label meanings
+      - i.e. in the study, the labels were "Food" and "Business"
+      - eg. "types of food," "food actions/verbs," "recipe,", "types of business," "buying/selling," and "money" 
+    - for many semantic concepts, participants listed keywords or symbols
+      - e.g., keywords like "cookie" and "beef" are indicators of the concept "types of food"
+  - Structural concepts
+    - these are independent of label meanings, but dependent on components of the data type
+      - i.e. in the study, the the data type was text-based news articles)
+      - eg. "title," "sub-headers," "author," "paragraphs," "ordered lists,", "sentences," and "words"
 
 ## Paper 7: [Whither AutoML? Understanding the Role of Automation in Machine Learning Workflows (Xin, Wu, et al., 2021)](https://arxiv.org/abs/2101.04834)
 
