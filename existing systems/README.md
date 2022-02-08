@@ -28,7 +28,7 @@ Typical task oriented dialog system architecture:
 
 Machine-learning based approaches are more flexible, but are not interpretable and require lots of training data.
 
-This paper introduces **Conversatin Learner**. It is a machine teaching tool for building dialog managers. It combines the best of both approaches.
+This paper introduces **Conversation Learner**. It is a machine teaching tool for building dialog managers. It combines the best of both approaches.
   - Dialog authors can create a dialog flow using familiar tools.
   - The dialog flow is converted into a parametric model (e.g., neural networks).
   - Dialog authors can improve the dialog manager (i.e., the parametric model) over time by leveraging user-system dialog logs as training data through a machine teaching interface.
