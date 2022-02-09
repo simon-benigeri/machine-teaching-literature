@@ -8,7 +8,11 @@ The following section introduces Data Programming and Weak Supervision. The goal
 
 ## What is Data Programming?
 
-## What is Weak Supervision?
+### TODO:
+Definition
+Give some examples of LFs
+What is weak supervision?
+Link DP and Snorkel papers.
 
 ## Data Programming for Machine Teaching
 
