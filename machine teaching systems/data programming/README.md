@@ -47,6 +47,11 @@ This requires:
   - A system that handles the data science stuff
     - e.g. data augmentation, balancing the dataset, hyperparameter optimization, cross validation
 
+The following paper shows an example of what we are thinking of (in the medical domain):
+[A clinical text classification paradigm using weak supervision and deep representation](https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-018-0723-6)
+
+![](images/medical_example.png)
+
 ## Data Programming Systems
 
 ### Snorkel Flow by [Snorkel.ai](https://snorkel.ai/platform/#how-it-works)
