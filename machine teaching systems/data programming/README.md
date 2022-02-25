@@ -2,9 +2,14 @@
 The following section introduces Data Programming and Weak Supervision. The goal is to show technologies that can be used to design a machine teaching system.
 
 ## TODO:
-1. Put intro to snorkel here. Include description of data programming, weak supervision, and training on noisy labels.
-2. Include all major links to snorkel papers and tutorials here.
-3. Cleanup the notes below so that they can find their way around Snorkel related libraries.
+1. Finish intro to Snorkel
+2. Cleanup the notes below so that they can find their way around Snorkel related libraries.
+
+## [Understanding Snorkel](https://medium.com/@annalara/understanding-snorkel-5e33351aa43b)
+
+This article provides a good overview of Snorkel, data programming, weak supervision, and training on noisy labels.
+
+Include all major links to snorkel papers and tutorials here.
 
 ## What is Data Programming?
 
