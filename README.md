@@ -31,10 +31,7 @@ This section contains the code and documentation for classifying Motions in cour
 This is section is where I downloaded and accessed the court docket entries data in the code. The data is not published in the repo.
 
 This section also contains a directory in which I listed use cases for system built with Snorkel. It contains:
-  - a description of the process for training a text classifier for antisemtic tweets using Snorkel
-    - this process provides:
-      - a simple procedure to follow to collect and label data
-      - some information on how to define and evaluate labeling functions
-      - an example of training the label model and text classifier
-  - some links to datasets that can be used for various text processing tasks, like classification and NER
-    - those datasets are probably not very useful because we later focused on court docket entries. I left them there anyways.
+  - a description of the process for training a text classifier for antisemtic tweets using Snorkel, including:
+    - a simple procedure to follow to collect and label data
+    - some information on how to define and evaluate labeling functions
+    - an example of training the label model and text classifier
