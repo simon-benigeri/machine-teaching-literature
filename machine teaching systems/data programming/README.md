@@ -94,6 +94,10 @@ Here are some common types of LFs:
 - Noisy manual labels: crowdsourcing
 - External models: other models with useful signals
 
+#### Some Snorkel Tutorials
+- **See the [Snorkel SPAM Tutorial](https://www.snorkel.org/use-cases/01-spam-tutorial)**
+- **See the [Snorkel information extraction tutorial](https://www.snorkel.org/use-cases/spouse-demo)**
+
 ### Extensions to Snorkel
 
 #### [BabbleLabble Framework](https://github.com/HazyResearch/babble). 
