@@ -5,13 +5,14 @@ channels:
   - pytorch
   - defaults
 dependencies:
-  - python<=3.9
+  - python>=3.8,<3.9
   - pip
   - numpy
   - pandas
   - nltk
   - jupyterlab
   - tqdm
+  - transformers==4.1.1
   - scikit-learn
   - imbalanced-learn
   - snorkel
