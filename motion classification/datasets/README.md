@@ -2,7 +2,7 @@
 
 ## Text Classification
 
-### 1. Antisemitic tweets
+### Antisemitic tweets example
 Source: Building NLP Classifiers Cheaply With Transfer Learning and Weak Supervision 
 - [Medium blog post](https://medium.com/sculpt/a-technique-for-building-nlp-classifiers-efficiently-with-transfer-learning-and-weak-supervision-a8e2f21ca9c8)
 - [paper](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/reports/custom/15577251.pdf)
@@ -111,31 +111,3 @@ LF metrics:
 10. Run the Label Model over the training set. Look at the top 100 tweets for each class.
 
 11. If the Label Model works, compute probablistiic labels for the training set. Now we have a classification task with a noisy dataset.
-
-### [Twitter Sentiment Analysis Dataset](https://www.kaggle.com/jp797498e/twitter-entity-sentiment-analysis)
-
-#### Overview
-This is an entity-level sentiment analysis dataset of twitter. Given a message and an entity, the task is to judge the sentiment of the message about the entity. There are three classes in this dataset: Positive, Negative and Neutral. We regard messages that are not relevant to the entity (i.e. Irrelevant) as Neutral.
-
-**For multiclass classification**: [see this blog post](https://towardsdatascience.com/using-snorkel-for-multi-label-annotation-cc2aa217986a)
-
-#### Usage
-Please use `twitter_training.csv` as the training set and `twitter_validation.csv` as the validation set. Top 1 classification accuracy is used as the metric.
-
-### [Predict reading level of book given review](https://www.kaggle.com/thomaskonstantin/highly-rated-children-books-and-stories?select=children_stories.Csv)
-
-### 2. IMDB Movie Reviews: Sentiment Analysis
-
-### 3. YouTube Comments: SPAM detection
-- **See the [Snorkel SPAM Tutorial](https://www.snorkel.org/use-cases/01-spam-tutorial)**
-
-## [Named Entity Recognition datasets](https://github.com/davidsbatista/NER-datasets)
-- **See the [Snorkel information extraction tutorial](https://www.snorkel.org/use-cases/spouse-demo) 
-
-### [CoNNL2003 shared task - Language-Independent Named Entity Recognition](https://aclanthology.org/W03-0419/)
-
-### [WNUT2017 Shared Task on Novel and Emerging Entity Recognition](https://aclanthology.org/W17-4418/)
-
-## Topic Modeling
-
-### [Neurips LDA](https://www.kaggle.com/rowhitswami/nips-papers-1987-2019-updated/tasks?taskId=2960)
