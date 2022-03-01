@@ -62,11 +62,13 @@ def main(
         model=model,  # the instantiated 🤗 Transformers model to be trained
         args=training_args,  # training arguments, defined above
         train_dataset=train_dataset,  # training dataset
-        eval_dataset=val_dataset,  # evaluation dataset,
-        test_dataset=test_dataset
+        eval_dataset=val_dataset  # evaluation dataset,
     )
 
     trainer.train()
+
+# TODO: run eval
+# TODO: place create dataset in Trainer class
 
 
 

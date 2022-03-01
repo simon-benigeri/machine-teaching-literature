@@ -93,3 +93,5 @@ def apply_lfs(df_train: pd.DataFrame,
 
     # return df_train_filtered['text'].tolist(), preds_train_filtered.tolist()
     return df_train_filtered['text'].tolist(), preds_train_filtered
+
+#TODO: for 'majority-vote' and 'abstain' check values
