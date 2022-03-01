@@ -83,6 +83,5 @@ if __name__ == '__main__':
     parser.add_argument('--epochs', type=int, default=3)
     parser.add_argument('--batch-size', type=int, default=16)
     args = parser.parse_args()
-    print(dict(args._get_kwargs()))
-    print(ass)
+    # print(dict(args._get_kwargs()))
     main(**dict(args._get_kwargs()))
