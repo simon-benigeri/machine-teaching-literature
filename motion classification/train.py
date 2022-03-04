@@ -12,15 +12,10 @@ from load_docket_entries_dataset import load_dataset
 from snorkel_labeling import create_lf_set, apply_lfs, LfAggregator, TieBreakPolicy
 
 def compute_metrics(eval_preds):
-    accuracy = load_metric("accuracy")
-    f1_score = load_metric("f1")
+    metric = load_metric("accuracy")
     logits, labels = eval_preds
     predictions = np.argmax(logits, axis=-1)
-    performance = {
-        "accuracy": accuracy.compute(predictions=predictions, references=labels),
-        "f1_score": f1_score.compute(predictions=predictions, references=labels)
-    }
-    return performance
+    return metric.compute(predictions=predictions, references=labels)
 
 def main(
         input_data: Path,
@@ -87,10 +82,6 @@ def main(
     trainer.train()
 
     results = trainer.evaluate()
-    print(results)
-
-# TODO: run eval
-# TODO: place create dataset in Trainer class
 
 
 
