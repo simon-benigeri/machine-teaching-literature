@@ -39,11 +39,16 @@ def main(
     # apply lfs to create training set
     test_texts, test_labels = df_test['text'].tolist(), df_test['motion'].to_numpy(dtype=int)
 
-    train_dataset, val_dataset, test_dataset = setup_dataset(train_texts=train_texts,
-                                                             train_labels=train_labels,
-                                                             test_texts=test_texts,
-                                                             test_labels=test_labels,
-                                                             tokenizer=tokenizer)
+    # train_dataset, val_dataset, test_dataset = setup_dataset(train_texts=train_texts,
+    #                                                          train_labels=train_labels,
+    #                                                          test_texts=test_texts,
+    #                                                          test_labels=test_labels,
+    #                                                          tokenizer=tokenizer)
+    train_dataset, test_dataset = setup_dataset(train_texts=train_texts,
+                                                train_labels=train_labels,
+                                                test_texts=test_texts,
+                                                test_labels=test_labels,
+                                                tokenizer=tokenizer)
 
     training_args = TrainingArguments(
         output_dir='./results',  # output directory
@@ -67,7 +72,8 @@ def main(
 
     trainer.train()
 
-    trainer.evaluate()
+    results = trainer.evaluate()
+    print(results)
 
 # TODO: run eval
 # TODO: place create dataset in Trainer class
