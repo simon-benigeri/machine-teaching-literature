@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 
-def load_dataset(input_data: Path = 'datasets/court_docket_entries',
+def load_dataset(input_data: Path = 'data/court_docket_entries',
                  test_size: float = 0.4,
                  output_data: Optional[Path] = None):
     """

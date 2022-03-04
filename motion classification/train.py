@@ -93,7 +93,7 @@ def main(
 
 if __name__ == '__main__':
     parser = ArgumentParser(description='This script trains a DistilBERT classifier on a weakly supervised dataset')
-    parser.add_argument('--input-data', type=Path, default='datasets/court_docket_entries')
+    parser.add_argument('--input-data', type=Path, default='data/court_docket_entries')
     parser.add_argument('--output-data', type=Path, nargs='?')
     parser.add_argument('--test-size', type=float, default=0.4)
     parser.add_argument('--aggregator', type=LfAggregator, default='majority-vote')
