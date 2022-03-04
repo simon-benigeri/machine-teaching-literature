@@ -2,12 +2,20 @@ from argparse import ArgumentParser
 from pathlib import Path
 from typing import Optional
 
+import numpy as np
+
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification, Trainer, TrainingArguments
+from datasets import load_metric
 
 from dataset import setup_dataset
 from load_docket_entries_dataset import load_dataset
 from snorkel_labeling import create_lf_set, apply_lfs, LfAggregator, TieBreakPolicy
 
+def compute_metrics(eval_preds):
+    metric = load_metric("accuracy", "f1")
+    logits, labels = eval_preds
+    predictions = np.argmax(logits, axis=-1)
+    return metric.compute(predictions=predictions, references=labels)
 
 def main(
         input_data: Path,
@@ -67,7 +75,8 @@ def main(
         model=model,  # the instantiated 🤗 Transformers model to be trained
         args=training_args,  # training arguments, defined above
         train_dataset=train_dataset,  # training dataset
-        eval_dataset=test_dataset  # evaluation dataset,
+        eval_dataset=test_dataset,  # evaluation dataset,
+        compute_metrics=compute_metrics
     )
 
     trainer.train()
