@@ -35,14 +35,15 @@ def setup_dataset(train_texts: List[str],
     :param tokenizer:
     :return:
     """
-    train_texts, val_texts, train_labels, val_labels = train_test_split(train_texts, train_labels, test_size=.2)
+    # train_texts, val_texts, train_labels, val_labels = train_test_split(train_texts, train_labels, test_size=.2)
 
     train_encodings = tokenizer(train_texts, truncation=True, padding=True)
-    val_encodings = tokenizer(val_texts, truncation=True, padding=True)
+    # val_encodings = tokenizer(val_texts, truncation=True, padding=True)
     test_encodings = tokenizer(test_texts, truncation=True, padding=True)
 
     train_dataset = MOTIONSDataset(train_encodings, train_labels)
-    val_dataset = MOTIONSDataset(val_encodings, val_labels)
+    # val_dataset = MOTIONSDataset(val_encodings, val_labels)
     test_dataset = MOTIONSDataset(test_encodings, test_labels)
 
-    return train_dataset, val_dataset, test_dataset
+    # return train_dataset, val_dataset, test_dataset
+    return train_dataset, test_dataset
