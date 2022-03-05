@@ -7,7 +7,7 @@ import numpy as np
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, AutoConfig
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification, Trainer, TrainingArguments
 # from datasets import load_metric
-from sklearn import metrics
+from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score, classification_report
 
 from dataset import setup_dataset
 from load_docket_entries_dataset import load_dataset
@@ -17,11 +17,13 @@ from snorkel_labeling import create_lf_set, apply_lfs, LfAggregator, TieBreakPol
 def compute_metrics(eval_preds):
     logits, targets = eval_preds
     outputs = np.argmax(logits, axis=-1)
-    accuracy = metrics.accuracy_score(targets, outputs)
-    f1_score_micro = metrics.f1_score(targets, outputs, average='micro')
-    f1_score_macro = metrics.f1_score(targets, outputs, average='macro')
+    accuracy = accuracy_score(targets, outputs)
+    balanced_accuracy = balanced_accuracy_score(targets, outputs)
+    f1_score_micro = f1_score(targets, outputs, average='micro')
+    f1_score_macro = f1_score(targets, outputs, average='macro')
     return {
         "accuracy": accuracy,
+        "balanced_accuracy": balanced_accuracy,
         "f1_score_micro": f1_score_micro,
         "f1_score_macro": f1_score_macro
     }
@@ -86,12 +88,11 @@ def main(
 
     model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased")
     # model = DistilBertForSequenceClassification.from_pretrained("distilbert-base-uncased")
-    """
+    
     if return_probs:
         model.config.problem_type = "multi_label_classification"
     else:
         model.config.problem_type = "single_label_classification"
-    """
 
     trainer = Trainer(
         model=model,  # the instantiated 🤗 Transformers model to be trained
