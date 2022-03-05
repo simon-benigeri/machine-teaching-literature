@@ -61,7 +61,7 @@ def main(
     # To log experiment
     # arguments = {key: str(value) for key, value in locals().items()}
     arguments = locals()
-    for key in ("input_data", "output_data", "aggregator", "tie_break"):
+    for key in ("input_data", "output_data", "aggregator", "tie_break", "results_dir"):
         arguments[key] = str(arguments[key])
 
     # load dataset
@@ -153,6 +153,7 @@ def main(
 
     with Path(f"{output_directory}/arguments.json").open("w", encoding="utf-8") as f_:
         json.dump(arguments, f_)
+        
     trainer.save_metrics(split="eval", metrics=performance, combined=True)
     trainer.save_state()
     trainer.save_model()
