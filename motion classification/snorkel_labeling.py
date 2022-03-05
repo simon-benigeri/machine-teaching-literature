@@ -91,7 +91,29 @@ def apply_lfs(df_train: pd.DataFrame,
     # Filter out examples not covered by any labeling function
     df_train_filtered, preds_train_filtered = filter_unlabeled_dataframe(X=df_train, y=preds_train, L=L_train)
 
-    # return df_train_filtered['text'].tolist(), preds_train_filtered.tolist()
-    return df_train_filtered['text'].tolist(), preds_train_filtered
+    # Remove samples with ABSTAIN
+    # mask = np.where(preds_train_filtered != ClassLabels.ABSTAIN)
+    df_train_filtered['snorkel_labels'] = preds_train_filtered
+    df_train_filtered = df_train_filtered[df_train_filtered['snorkel_labels'] != ClassLabels.ABSTAIN]
+    # df_train_filtered = df_train_filtered.iloc[mask]
 
-#TODO: for 'majority-vote' and 'abstain' check values
+    return df_train_filtered['text'].tolist(), df_train_filtered['snorkel_labels'].to_numpy()
+    # return df_train_filtered.iloc[mask]['text'].to_list(), preds_train_filtered[mask]
+
+if __name__=="__main__":
+    from load_docket_entries_dataset import load_dataset
+    #TODO: for 'majority-vote' and 'abstain' check values
+    aggregator = LfAggregator.MAJORITY_VOTE
+    return_probs=False
+    tie_break = TieBreakPolicy.ABSTAIN
+    df_train, df_test = load_dataset(input_data='data/court_docket_entries',
+                                     test_size=0.4)
+    # create lfs
+    lf_set = create_lf_set()
+
+    # apply lfs to create training set
+    train_texts, train_labels = apply_lfs(df_train=df_train,
+                                          lfs=lf_set,
+                                          aggregator=aggregator,
+                                          return_probs=return_probs,
+                                          tie_break_policy=tie_break)

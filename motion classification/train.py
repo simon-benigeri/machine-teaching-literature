@@ -4,18 +4,19 @@ from typing import Optional
 
 import numpy as np
 
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, AutoConfig
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification, Trainer, TrainingArguments
-from datasets import load_metric
+# from datasets import load_metric
+from sklearn.metrics import accuracy_score
 
 from dataset import setup_dataset
 from load_docket_entries_dataset import load_dataset
 from snorkel_labeling import create_lf_set, apply_lfs, LfAggregator, TieBreakPolicy
 
 def compute_metrics(eval_preds):
-    metric = load_metric("accuracy")
     logits, labels = eval_preds
     predictions = np.argmax(logits, axis=-1)
-    return metric.compute(predictions=predictions, references=labels)
+    return accuracy_score(labels, predictions)
 
 def main(
         input_data: Path,
@@ -35,7 +36,8 @@ def main(
     lf_set = create_lf_set()
 
     # load tokenizer
-    tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
+    tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
+    # tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
 
     # apply lfs to create training set
     train_texts, train_labels = apply_lfs(df_train=df_train,
@@ -69,7 +71,16 @@ def main(
         logging_steps=10,
     )
 
-    model = DistilBertForSequenceClassification.from_pretrained("distilbert-base-uncased")
+    print(train_labels[0])
+    # config = AutoConfig.from_pretrained("distilbery-base-uncased")
+
+
+    model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased")
+    # model = DistilBertForSequenceClassification.from_pretrained("distilbert-base-uncased")
+    if return_probs:
+        model.config.problem_type = "multi_label_classification"
+    else:
+        model.config.problem_type = "single_label_classification"
 
     trainer = Trainer(
         model=model,  # the instantiated 🤗 Transformers model to be trained
@@ -82,6 +93,10 @@ def main(
     trainer.train()
 
     results = trainer.evaluate()
+
+    print(results)
+
+    return results
 
 
 
