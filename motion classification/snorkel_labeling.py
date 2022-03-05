@@ -84,21 +84,23 @@ def apply_lfs(df_train: pd.DataFrame,
     # Predict probs labels
     preds_train = label_model.predict_proba(L=L_train)
 
-    # Convert probs labels to predictions
-    if not return_probs:
-        preds_train = probs_to_preds(probs=preds_train, tie_break_policy=tie_break_policy)
-
     # Filter out examples not covered by any labeling function
     df_train_filtered, preds_train_filtered = filter_unlabeled_dataframe(X=df_train, y=preds_train, L=L_train)
 
-    # Remove samples with ABSTAIN
-    # mask = np.where(preds_train_filtered != ClassLabels.ABSTAIN)
-    df_train_filtered['snorkel_labels'] = preds_train_filtered
-    df_train_filtered = df_train_filtered[df_train_filtered['snorkel_labels'] != ClassLabels.ABSTAIN]
-    # df_train_filtered = df_train_filtered.iloc[mask]
+    texts, snorkel_labels = df_train_filtered['text'].to_numpy(dtype=str), preds_train_filtered
 
-    return df_train_filtered['text'].tolist(), df_train_filtered['snorkel_labels'].to_numpy()
-    # return df_train_filtered.iloc[mask]['text'].to_list(), preds_train_filtered[mask]
+    # create a boolean mask to eventually remove samples with ABSTAIN
+    mask = np.full((len(snorkel_labels), ), True, dtype=bool)
+
+    # Convert prob labels to predictions
+    if not return_probs:
+        snorkel_labels = probs_to_preds(probs=snorkel_labels, tie_break_policy=tie_break_policy)
+
+        if tie_break == TieBreakPolicy.ABSTAIN:
+            mask = snorkel_labels != ClassLabels.ABSTAIN
+
+    return texts[mask].tolist(), snorkel_labels[mask]
+
 
 if __name__=="__main__":
     from load_docket_entries_dataset import load_dataset
@@ -117,3 +119,8 @@ if __name__=="__main__":
                                           aggregator=aggregator,
                                           return_probs=return_probs,
                                           tie_break_policy=tie_break)
+
+    for i, x in enumerate(zip(train_texts, train_labels)):
+        print(x)
+        if i > 50:
+            break
