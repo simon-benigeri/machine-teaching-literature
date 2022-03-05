@@ -15,3 +15,4 @@ saved
 /motion\ classification/datasets/court_docket_entries/
 *.pyc
 */logs/
+*/results/

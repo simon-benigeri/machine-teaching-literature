@@ -1,55 +1,41 @@
 from argparse import ArgumentParser
 from pathlib import Path
 from typing import Optional
+import time
+import json
 
 import numpy as np
 
-from transformers import AutoModelForSequenceClassification, AutoTokenizer, AutoConfig
 from transformers import (
-    DistilBertTokenizer,
-    DistilBertForSequenceClassification,
+    AutoModelForSequenceClassification,
+    AutoTokenizer,
+    AutoConfig,
     Trainer,
     TrainingArguments,
 )
 
 # from datasets import load_metric
-from sklearn.metrics import (
-    accuracy_score,
-    balanced_accuracy_score,
-    f1_score,
-    classification_report,
-)
+from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score
+from sklearn.preprocessing import MultiLabelBinarizer
 
 from dataset import setup_dataset
 from load_docket_entries_dataset import load_dataset
 from snorkel_labeling import create_lf_set, apply_lfs, LfAggregator, TieBreakPolicy
 
-"""
-from torch import nn
 
-class CustomTrainer(Trainer):
-    def compute_loss(self, model, inputs, return_outputs=False):
-        labels = inputs.get("labels")
-        # forward pass
-        outputs = model(**inputs)
-        logits = outputs.get("logits")
-        # compute custom loss (suppose one has 3 labels with different weights)
-        loss_fct = nn.CrossEntropyLoss()
-        loss = loss_fct(logits.view(-1, self.model.config.num_labels), labels.view(-1))
-        return (loss, outputs) if return_outputs else loss
-"""
-"""
-elif self.config.problem_type == "multi_label_classification":
-                loss_fct = BCEWithLogitsLoss()
-                loss = loss_fct(logits, labels)
-"""
 def compute_metrics(eval_preds):
     logits, targets = eval_preds
     outputs = np.argmax(logits, axis=-1)
+
+    # if we work with probabilistic labels, targets is [0.0, 1.0] instead of [1]
+    if len(targets.shape) == 2:
+        targets = np.argmax(targets, axis=-1)
+
     accuracy = accuracy_score(targets, outputs)
     balanced_accuracy = balanced_accuracy_score(targets, outputs)
     f1_score_micro = f1_score(targets, outputs, average="micro")
     f1_score_macro = f1_score(targets, outputs, average="macro")
+
     return {
         "accuracy": accuracy,
         "balanced_accuracy": balanced_accuracy,
@@ -67,11 +53,18 @@ def main(
     tie_break: TieBreakPolicy,
     epochs: int,
     batch_size: int,
+    eval_batch_size: int,
+    freeze: bool,
+    debug: bool,
 ):
+    # To log experiment
+    arguments = {key: str(value) for key, value in locals().items()}
+
     # load dataset
     df_train, df_test = load_dataset(
         input_data=input_data, test_size=test_size, output_data=output_data
     )
+
     # create lfs
     lf_set = create_lf_set()
 
@@ -94,12 +87,33 @@ def main(
         df_test["motion"].to_numpy(dtype=int),
     )
 
-    # train_dataset, val_dataset, test_dataset = setup_dataset(train_texts=train_texts,
-    #                                                          train_labels=train_labels,
-    #                                                          test_texts=test_texts,
-    #                                                          test_labels=test_labels,
-    #                                                          tokenizer=tokenizer)
+    config = AutoConfig.from_pretrained("distilbert-base-uncased")
 
+    # if we work with probabilistic labels
+    if return_probs:
+        config.problem_type = "multi_label_classification"
+        mlb = MultiLabelBinarizer()
+        test_labels = mlb.fit_transform(test_labels.reshape(-1, 1)).astype(float)
+    else:
+        config.problem_type = "single_label_classification"
+
+    model = AutoModelForSequenceClassification.from_pretrained(
+        "distilbert-base-uncased", config=config
+    )
+
+    # Freeze transformer layers (only train classification layer)
+    if freeze:
+        for param in model.base_model.parameters():
+            param.requires_grad = False
+
+    # small sample for debugging
+    if debug:
+        train_texts = train_texts[:32]
+        train_labels = train_labels[:32]
+        test_texts = test_texts[:32]
+        test_labels = test_labels[:32]
+
+    # Create datasets for model training
     train_dataset, test_dataset = setup_dataset(
         train_texts=train_texts,
         train_labels=train_labels,
@@ -108,28 +122,17 @@ def main(
         tokenizer=tokenizer,
     )
 
+    output_directory = f"./results/{int(time.time())}"
     training_args = TrainingArguments(
-        output_dir="./results",  # output directory
+        output_dir=output_directory,  # output directory
         num_train_epochs=epochs,  # total number of training epochs
         per_device_train_batch_size=batch_size,  # batch size per device during training
-        per_device_eval_batch_size=64,  # batch size for evaluation
+        per_device_eval_batch_size=eval_batch_size,  # batch size for evaluation
         warmup_steps=500,  # number of warmup steps for learning rate scheduler
         weight_decay=0.01,  # strength of weight decay
         logging_dir="./logs",  # directory for storing logs
         logging_steps=10,
     )
-
-    # print(train_labels[0])
-    config = AutoConfig.from_pretrained("distilbert-base-uncased")
-    if return_probs:
-        config.problem_type = "multi_label_classification"
-    else:
-        config.problem_type = "single_label_classification"
-
-    model = AutoModelForSequenceClassification.from_pretrained(
-        "distilbert-base-uncased", config=config
-    )
-    # model = DistilBertForSequenceClassification.from_pretrained("distilbert-base-uncased")
 
     trainer = Trainer(
         model=model,  # the instantiated 🤗 Transformers model to be trained
@@ -144,6 +147,12 @@ def main(
     performance = trainer.evaluate()
     print(performance)
 
+    with Path(f"{output_directory}/arguments.json").open("w", encoding="utf-8") as f_:
+        json.dump(arguments, f_)
+    trainer.save_metrics(split="eval", metrics=performance, combined=True)
+    trainer.save_state()
+    trainer.save_model()
+
 
 if __name__ == "__main__":
     parser = ArgumentParser(
@@ -157,6 +166,9 @@ if __name__ == "__main__":
     parser.add_argument("--tie-break", type=TieBreakPolicy, default="abstain")
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--batch-size", type=int, default=16)
+    parser.add_argument("--eval-batch-size", type=int, default=64)
+    parser.add_argument("--freeze", default=False, action="store_true")
+    parser.add_argument("--debug", default=False, action="store_true")
     args = parser.parse_args()
     # print(dict(args._get_kwargs()))
     main(**dict(args._get_kwargs()))
