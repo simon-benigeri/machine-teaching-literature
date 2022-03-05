@@ -47,6 +47,7 @@ def compute_metrics(eval_preds):
 def main(
     input_data: Path,
     output_data: Optional[Path],
+    results_dir: Optional[Path],
     test_size: float,
     aggregator: LfAggregator,
     return_probs: bool,
@@ -58,7 +59,10 @@ def main(
     debug: bool,
 ):
     # To log experiment
-    arguments = {key: str(value) for key, value in locals().items()}
+    # arguments = {key: str(value) for key, value in locals().items()}
+    arguments = locals()
+    for key in ("input_data", "output_data", "aggregator", "tie_break"):
+        arguments[key] = str(arguments[key])
 
     # load dataset
     df_train, df_test = load_dataset(
@@ -122,7 +126,7 @@ def main(
         tokenizer=tokenizer,
     )
 
-    output_directory = f"./results/{int(time.time())}"
+    output_directory = f"{results_dir}/{int(time.time())}"
     training_args = TrainingArguments(
         output_dir=output_directory,  # output directory
         num_train_epochs=epochs,  # total number of training epochs
@@ -160,6 +164,7 @@ if __name__ == "__main__":
     )
     parser.add_argument("--input-data", type=Path, default="data/court_docket_entries")
     parser.add_argument("--output-data", type=Path, nargs="?")
+    parser.add_argument("--results-dir", type=Path, default="./results")
     parser.add_argument("--test-size", type=float, default=0.4)
     parser.add_argument("--aggregator", type=LfAggregator, default="majority-vote")
     parser.add_argument("--return-probs", default=False, action="store_true")
