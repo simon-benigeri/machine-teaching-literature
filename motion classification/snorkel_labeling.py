@@ -89,6 +89,8 @@ def apply_lfs(df_train: pd.DataFrame,
 
     texts, snorkel_labels = df_train_filtered['text'].to_numpy(dtype=str), preds_train_filtered
 
+    #TODO: WILL THIS BREAK IF I USE ABSTAIN WITH PROBABILISTIC LABELS?
+
     # create a boolean mask to eventually remove samples with ABSTAIN
     mask = np.full((len(snorkel_labels), ), True, dtype=bool)
 
@@ -96,7 +98,7 @@ def apply_lfs(df_train: pd.DataFrame,
     if not return_probs:
         snorkel_labels = probs_to_preds(probs=snorkel_labels, tie_break_policy=tie_break_policy)
 
-        if tie_break == TieBreakPolicy.ABSTAIN:
+        if tie_break_policy == TieBreakPolicy.ABSTAIN:
             mask = snorkel_labels != ClassLabels.ABSTAIN
 
     return texts[mask].tolist(), snorkel_labels[mask]

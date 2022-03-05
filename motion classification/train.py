@@ -7,16 +7,25 @@ import numpy as np
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, AutoConfig
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification, Trainer, TrainingArguments
 # from datasets import load_metric
-from sklearn.metrics import accuracy_score
+from sklearn import metrics
 
 from dataset import setup_dataset
 from load_docket_entries_dataset import load_dataset
 from snorkel_labeling import create_lf_set, apply_lfs, LfAggregator, TieBreakPolicy
 
+
 def compute_metrics(eval_preds):
-    logits, labels = eval_preds
-    predictions = np.argmax(logits, axis=-1)
-    return accuracy_score(labels, predictions)
+    logits, targets = eval_preds
+    outputs = np.argmax(logits, axis=-1)
+    accuracy = metrics.accuracy_score(targets, outputs)
+    f1_score_micro = metrics.f1_score(targets, outputs, average='micro')
+    f1_score_macro = metrics.f1_score(targets, outputs, average='macro')
+    return {
+        "accuracy": accuracy,
+        "f1_score_micro": f1_score_micro,
+        "f1_score_macro": f1_score_macro
+    }
+
 
 def main(
         input_data: Path,
@@ -46,7 +55,7 @@ def main(
                                           return_probs=return_probs,
                                           tie_break_policy=tie_break)
 
-    # apply lfs to create training set
+    # format test set
     test_texts, test_labels = df_test['text'].tolist(), df_test['motion'].to_numpy(dtype=int)
 
     # train_dataset, val_dataset, test_dataset = setup_dataset(train_texts=train_texts,
@@ -54,6 +63,7 @@ def main(
     #                                                          test_texts=test_texts,
     #                                                          test_labels=test_labels,
     #                                                          tokenizer=tokenizer)
+
     train_dataset, test_dataset = setup_dataset(train_texts=train_texts,
                                                 train_labels=train_labels,
                                                 test_texts=test_texts,
@@ -71,16 +81,17 @@ def main(
         logging_steps=10,
     )
 
-    print(train_labels[0])
+    # print(train_labels[0])
     # config = AutoConfig.from_pretrained("distilbery-base-uncased")
-
 
     model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased")
     # model = DistilBertForSequenceClassification.from_pretrained("distilbert-base-uncased")
+    """
     if return_probs:
         model.config.problem_type = "multi_label_classification"
     else:
         model.config.problem_type = "single_label_classification"
+    """
 
     trainer = Trainer(
         model=model,  # the instantiated 🤗 Transformers model to be trained
@@ -92,13 +103,8 @@ def main(
 
     trainer.train()
 
-    results = trainer.evaluate()
-
-    print(results)
-
-    return results
-
-
+    performance = trainer.evaluate()
+    print(performance)
 
 
 
