@@ -107,7 +107,7 @@ def apply_lfs(df_train: pd.DataFrame,
 if __name__=="__main__":
     from load_docket_entries_dataset import load_dataset
     #TODO: for 'majority-vote' and 'abstain' check values
-    aggregator = LfAggregator.MAJORITY_VOTE
+    aggregator = LfAggregator.LABEL_MODEL
     return_probs=False
     tie_break = TieBreakPolicy.ABSTAIN
     df_train, df_test = load_dataset(input_data='data/court_docket_entries',
@@ -122,7 +122,11 @@ if __name__=="__main__":
                                           return_probs=return_probs,
                                           tie_break_policy=tie_break)
 
+    # print(train_labels[0].shape)
+    # if not return_probs: "Motion to blah", 1
+    # if return probs: "Motion to blah", [0.0, 1.0]
+
     for i, x in enumerate(zip(train_texts, train_labels)):
-        print(x)
-        if i > 50:
+        print(x[1])
+        if i > 4:
             break

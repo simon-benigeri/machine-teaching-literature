@@ -12,11 +12,12 @@ dependencies:
   - nltk
   - jupyterlab
   - tqdm
-  - transformers==4.1.1
+  - transformers==4.17.0
   - scikit-learn
   - imbalanced-learn
   - snorkel
   - spacy
+  - black
   - spacy-model-en_core_web_sm
   - matplotlib
   - pytorch
