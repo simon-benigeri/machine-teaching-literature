@@ -21,6 +21,27 @@ class MOTIONSDataset(Dataset):
     def __len__(self):
         return len(self.labels)
 
+class MotionDatasetMLP(Dataset):
+
+    def __init__(self, data, label, device = "cpu", transform=None):
+        self.data = data
+        self.label = label
+
+    def __len__(self):
+        return len(self.label)
+
+    def __getitem__(self, idx):
+        out_data = self.data[idx]
+        out_label =  self.label[idx]
+
+        #if self.transform:
+        #    out_data = self.transform(out_data)
+
+        return out_data, out_label
+
+    def get_numpy_label(self):
+        return self.label.detach().cpu().numpy()
+    
 
 def setup_dataset(train_texts: List[str],
                   train_labels: np.array,
