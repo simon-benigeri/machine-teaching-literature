@@ -69,8 +69,9 @@ The following paper shows an example of what we are thinking of (in the medical 
 
 ![](images/medical_example.png)
 
-## Data Programming Systems
+## Data Programming Systems - Snorkel
 
+Here we focus on Snorkel because it's been around for a while and there's a lot to say about it. For alternatives to Snorkel please check out the [Snorkel Alternatives page](https://github.com/simon-benigeri/machine-teaching-literature/blob/main/machine%20teaching%20systems/data%20programming/snorkel_alternatives.md)
 ### [Snorkel](https://www.snorkel.org/)
 
 [Link to GitHub](https://github.com/snorkel-team/snorkel)
@@ -150,47 +151,3 @@ Learning labeling functions can be seen as learning many small tasks. Below are 
 
 #### [Coral](https://arxiv.org/abs/1709.02477)
 - Improves the label aggregation process by inferring generative model structure via static analysis of labeling functions
-
-### Alternatives to Snorkel
-
-#### [SKWEAK](https://github.com/NorskRegnesentral/skweak)
-Open source python toolkit to programmatically label text, like with Snorkel. Built on top of SpaCy.
-
-<img width="465" alt="Screen Shot 2021-10-27 at 2 07 21 PM" src="https://user-images.githubusercontent.com/44941782/139130800-b970537f-9170-4ca3-9066-77aa0c1033d9.png">
-
-Workflow:
-- Start: First, you need raw (unlabelled) data from your text domain. skweak is build on top of SpaCy, and operates with Spacy Doc objects, so you first need to convert your documents to Doc objects using SpaCy.
-- Step 1: Then, we need to define a range of labelling functions that will take those documents and annotate spans with labels. Those labelling functions can comes from **heuristics**, **gazetteers**, **machine learning models**, etc. See the [documentation](https://github.com/NorskRegnesentral/skweak/wiki) for more details.
-- Step 2: Once the labelling functions have been applied to your corpus, you need to aggregate their results in order to obtain a single annotation layer (instead of the multiple, possibly conflicting annotations from the labelling functions). This is done in skweak using a generative model that automatically estimates the relative accuracy and possible confusions of each labelling function.
-- Step 3: Finally, based on those aggregated labels, we can train our final model. Step 2 gives us a labelled corpus that (probabilistically) aggregates the outputs of all labelling functions, and you can use this labeled data to estimate any kind of machine learning model. You are free to use whichever model/framework you prefer.
-
-
-## Improving the Data Programming Interaction:
-Some papers in the [Awesome Weak Supervision](https://github.com/JieyuZ2/Awesome-Weak-Supervision) repo look into the **interaction** aspect of Data Programming based approaches.
-
-Some examples that caught my eye:
-### [INTERACTIVE WEAK SUPERVISION: LEARNING USEFUL HEURISTICS FOR DATA LABELING](https://github.com/benbo/interactive-weak-supervision) 
-The goal of this approach is help experts discover good labeling functions (LFs).
-
-<img width="848" alt="Screen Shot 2021-10-27 at 3 08 47 PM" src="https://user-images.githubusercontent.com/44941782/139139349-95e20601-2b4b-4538-a770-6f3bf4224c36.png">
-
-### [ACTIVE WEASUL: IMPROVING WEAK SUPERVISION WITH ACTIVE LEARNING](https://github.com/SamanthaBiegel/ActiveWeaSuL)
-
-<img width="902" alt="Screen Shot 2021-10-27 at 3 11 29 PM" src="https://user-images.githubusercontent.com/44941782/139139774-76b9d891-d80c-4053-8db5-5378d175f3b5.png">
-
-### [Ruler: Data Programming by Demonstration for Document Labeling](https://aclanthology.org/2020.findings-emnlp.181/)
-Data programming reduces the cost of creating a training set by encoding domain knowledge as labeling functions over source data.
-
-It requires:
-  1. domain expertise
-  2. programming experience - which subject matter experts do not have
-
-Also, generating functions by enumerating rules is not only time consuming but also inherently difficult, even for people with programming experience.
-
-Ruler is an interactive system that synthesizes labeling rules using span-level interactive demonstrations over document examples. Ruler is a first-of-a-kind implementation of data programming by demonstration (DPBD). 
-
-![](images/Ruler__DPBD.png)
-
-This new framework aims to relieve users from the burden of writing labeling functions, enabling them to focus on higher-level semantic analysis, such as identifying relevant signals for the labeling task. 
-
-![](images/Ruler__Labeling_Interaction.png)
