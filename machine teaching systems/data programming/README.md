@@ -187,4 +187,10 @@ It requires:
 
 Also, generating functions by enumerating rules is not only time consuming but also inherently difficult, even for people with programming experience.
 
-Ruler is an interactive system that synthesizes labeling rules using span-level interactive demonstrations over document examples. Ruler is a first-of-a-kind implementation of data programming by demonstration (DPBD). This new framework aims to relieve users from the burden of writing labeling functions, enabling them to focus on higher-level semantic analysis, such as identifying relevant signals for the labeling task. 
+Ruler is an interactive system that synthesizes labeling rules using span-level interactive demonstrations over document examples. Ruler is a first-of-a-kind implementation of data programming by demonstration (DPBD). 
+
+![](images/Ruler__DPBD.png)
+
+This new framework aims to relieve users from the burden of writing labeling functions, enabling them to focus on higher-level semantic analysis, such as identifying relevant signals for the labeling task. 
+
+![](images/Ruler__Labeling_Interaction.png)
