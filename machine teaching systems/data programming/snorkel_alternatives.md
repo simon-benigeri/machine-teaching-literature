@@ -1,4 +1,4 @@
-# Alternatives to Snorkel
+# Data Programming Systems - Alternatives to Snorkel
 
 While Snorkel is heavily mentioned, it is not the only technology or approach to data programming. This page contains examples of alternatives as well as links to research that focuses on improving the Data Programming Interaction.
 
