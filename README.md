@@ -26,7 +26,7 @@ This section introduces Snorkel, data programming, weak supervision, extensions 
 
 This section contains the code and documentation for classifying Motions in court docket entries with Snorkel.
 
-### [Datasets](https://github.com/simon-benigeri/machine-teaching-literature/tree/main/motion%20classification/datasets)
+### [Data](https://github.com/simon-benigeri/machine-teaching-literature/tree/main/motion%20classification/data)
 
 This is section is where I downloaded and accessed the court docket entries data in the code. The data is not published in the repo.
 
