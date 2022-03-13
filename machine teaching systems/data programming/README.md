@@ -1,23 +1,40 @@
 # Data Programming and Weak Supervision
 The following section introduces Data Programming and Weak Supervision. The goal is to show technologies that can be used to design a machine teaching system.
 
-## TODO:
-1. Finish intro to Snorkel
-2. Cleanup the notes below so that they can find their way around Snorkel related libraries.
+## What is Data Programming
+
+Data programming reduces the cost of creating a training set by encoding domain knowledge as heuristics or labeling functions over source data. Labeling functions can be made from regular expressions, keyword lists and dictionaries, knowledge bases, external models, etc. 
+
+For example:
+```python
+from snorkel.labeling import labeling_function
+
+@labeling_function()
+def lf_contains_motion(x):
+    # Return a label of MOTION if "motion" in document text, otherwise ABSTAIN
+    return MOTION if "motion" in x.text.lower() else ABSTAIN
+
+@labeling_function()
+positive_diagnosis = ["suggestive", "positive", "indicative", "suggests", "indicates"]
+negative_diagnosis = ["negative"] + ["not " + x for x in positive_diagnosis]
+def LF_diagnosis(x):
+    disease_start, disease_end = x.disease.get_word_range()
+    diagnosis_start, diagnosis_end = x.diagnosis.get_word_range()
+    if disease_start < diagnosis_end:
+      if x.diagnosis in positive_diagnosis:
+        return True
+      if x.diagnosis in negative_diagnosis:
+        return False
+    return None
+```
+
+Labeling functions vary in complexity and accessibility. They require **domain expertise** and **programming experience**.
+
+Given a set of labeling functions over a dataset, we can aggregate them to programmatically label our dataset. These functions are not necessarily perfect. In practice, individual labeling functions are weak and noisy supervision signals. But as you'll see in the Snorkel papers, we can still work with this.
 
 ## [Understanding Snorkel](https://medium.com/@annalara/understanding-snorkel-5e33351aa43b)
 
-This article provides a good overview of Snorkel, data programming, weak supervision, and training on noisy labels.
-
-Include all major links to snorkel papers and tutorials here.
-
-## What is Data Programming?
-
-### TODO:
-Definition
-Give some examples of LFs
-What is weak supervision?
-Link DP and Snorkel papers.
+This article provides a brief introduction to Snorkel, data programming, weak supervision, and training on noisy labels. Snorkel is expanded on later in this page.
 
 ## Data Programming for Machine Teaching
 
@@ -54,23 +71,6 @@ The following paper shows an example of what we are thinking of (in the medical 
 
 ## Data Programming Systems
 
-### Snorkel Flow by [Snorkel.ai](https://snorkel.ai/platform/#how-it-works)
-
-Existing commercial system based off of Snorkel. Snorkel is not quite a machine teaching system, but it can be used to create one. We can define an intereaction where users rapidly annotate data.
-
-#### Key functionality: Programmatically labeling data + UI
-1. Users can programmatically label data using labeling function-rules, heuristics, and other custom complex operators
-2. Interface to create labeling functions is a push-button UI or Python SDK with integrated notebooks
-3. System provides ready-made labeling functions (LF) builders, data exploration tools, and auto-suggest features 
-4. Users receive instant feedback with coverage and accuracy estimates of LFs to develop so as to build a high-quality training data set
-5. Lots of research that suggests ideas for building a similar system
-
-#### Key functionality: Supporting Labeling Function Creation
-1. Users can programmatically label data using labeling function-rules, heuristics, and other custom complex operators
-2. Interface to create labeling functions is a push-button UI or Python SDK with integrated notebooks
-3. System provides ready-made labeling functions (LF) builders, data exploration tools, and auto-suggest features 
-4. Users receive instant feedback with coverage and accuracy estimates of LFs to develop so as to build a high-quality training data set
-
 ### [Snorkel](https://www.snorkel.org/)
 
 [Link to GitHub](https://github.com/snorkel-team/snorkel)
@@ -98,13 +98,32 @@ Here are some common types of LFs:
 - **See the [Snorkel SPAM Tutorial](https://www.snorkel.org/use-cases/01-spam-tutorial)**
 - **See the [Snorkel information extraction tutorial](https://www.snorkel.org/use-cases/spouse-demo)**
 
+### Snorkel Flow by [Snorkel.ai](https://snorkel.ai/platform/#how-it-works)
+
+Existing commercial system based off of Snorkel. Snorkel is not quite a machine teaching system, but it can be used to create one. We can define an intereaction where users rapidly annotate data.
+
+#### Key functionality: Programmatically labeling data + UI
+1. Users can programmatically label data using labeling function-rules, heuristics, and other custom complex operators
+2. Interface to create labeling functions is a push-button UI or Python SDK with integrated notebooks
+3. System provides ready-made labeling functions (LF) builders, data exploration tools, and auto-suggest features 
+4. Users receive instant feedback with coverage and accuracy estimates of LFs to develop so as to build a high-quality training data set
+5. Lots of research that suggests ideas for building a similar system
+
+#### Key functionality: Supporting Labeling Function Creation
+1. Users can programmatically label data using labeling function-rules, heuristics, and other custom complex operators
+2. Interface to create labeling functions is a push-button UI or Python SDK with integrated notebooks
+3. System provides ready-made labeling functions (LF) builders, data exploration tools, and auto-suggest features 
+4. Users receive instant feedback with coverage and accuracy estimates of LFs to develop so as to build a high-quality training data set
+
 ### Extensions to Snorkel
+
+Some extensions to Snorkel can help us lower the technical barrier to creating labeling functions.
 
 #### [BabbleLabble Framework](https://github.com/HazyResearch/babble). 
 [paper](https://arxiv.org/pdf/1805.03818.pdf)
 
-**Key**:
-**Snorkel Labeling Functions** can be parsed from natural language explanations and this is more efficient interaction.
+**Key functionality**:
+Snorkel labeling functions can be parsed from natural language explanations.
 
 <img width="492" alt="Screen Shot 2021-10-27 at 2 11 40 PM" src="https://user-images.githubusercontent.com/44941782/139131374-27d586dd-e712-45b6-9e0b-9e8166c8b62b.png">
 
@@ -151,7 +170,7 @@ Some papers in the [Awesome Weak Supervision](https://github.com/JieyuZ2/Awesome
 
 Some examples that caught my eye:
 ### [INTERACTIVE WEAK SUPERVISION: LEARNING USEFUL HEURISTICS FOR DATA LABELING](https://github.com/benbo/interactive-weak-supervision) 
-The goal of this approach is help experts discover good labeling functions (LFs). Need to read the paper, but aware that some heuristics are provided.
+The goal of this approach is help experts discover good labeling functions (LFs).
 
 <img width="848" alt="Screen Shot 2021-10-27 at 3 08 47 PM" src="https://user-images.githubusercontent.com/44941782/139139349-95e20601-2b4b-4538-a770-6f3bf4224c36.png">
 
@@ -160,4 +179,12 @@ The goal of this approach is help experts discover good labeling functions (LFs)
 <img width="902" alt="Screen Shot 2021-10-27 at 3 11 29 PM" src="https://user-images.githubusercontent.com/44941782/139139774-76b9d891-d80c-4053-8db5-5378d175f3b5.png">
 
 ### [Ruler: Data Programming by Demonstration for Document Labeling](https://aclanthology.org/2020.findings-emnlp.181/)
-  - Data programming aims to reduce the cost of curating training data by encoding domain knowledge as labeling functions over source data. As such it not only requires domain expertise but also programming experience, a skill that many subject matter experts lack. Additionally, generating functions by enumerating rules is not only time consuming but also inherently difficult, even for people with programming experience. In this paper we introduce Ruler, an interactive system that synthesizes labeling rules using span-level interactive demonstrations over document examples. Ruler is a first-of-a-kind implementation of data programming by demonstration (DPBD). This new framework aims to relieve users from the burden of writing labeling functions, enabling them to focus on higher-level semantic analysis, such as identifying relevant signals for the labeling task. We compare Ruler with conventional data programming through a user study conducted with 10 data scientists who were asked to create labeling functions for sentiment and spam classification tasks. Results show Ruler is easier to learn and to use, and that it offers higher overall user-satisfaction while providing model performances comparable to those achieved by conventional data programming.
+Data programming reduces the cost of creating a training set by encoding domain knowledge as labeling functions over source data.
+
+It requires:
+  1. domain expertise
+  2. programming experience - which subject matter experts do not have
+
+Also, generating functions by enumerating rules is not only time consuming but also inherently difficult, even for people with programming experience.
+
+Ruler is an interactive system that synthesizes labeling rules using span-level interactive demonstrations over document examples. Ruler is a first-of-a-kind implementation of data programming by demonstration (DPBD). This new framework aims to relieve users from the burden of writing labeling functions, enabling them to focus on higher-level semantic analysis, such as identifying relevant signals for the labeling task. 
