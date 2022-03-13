@@ -17,7 +17,7 @@ def lf_contains_motion(x):
 positive_diagnosis = ["suggestive", "positive", "indicative", "suggests", "indicates"]
 negative_diagnosis = ["negative"] + ["not " + x for x in positive_diagnosis]
 @labeling_function()
-def LF_diagnosis(x):
+def lf_diagnosis(x):
     disease_start, disease_end = x.disease.get_word_range()
     diagnosis_start, diagnosis_end = x.diagnosis.get_word_range()
     if disease_start < diagnosis_end:
