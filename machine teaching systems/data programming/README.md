@@ -14,9 +14,9 @@ def lf_contains_motion(x):
     # Return a label of MOTION if "motion" in document text, otherwise ABSTAIN
     return MOTION if "motion" in x.text.lower() else ABSTAIN
 
-@labeling_function()
 positive_diagnosis = ["suggestive", "positive", "indicative", "suggests", "indicates"]
 negative_diagnosis = ["negative"] + ["not " + x for x in positive_diagnosis]
+@labeling_function()
 def LF_diagnosis(x):
     disease_start, disease_end = x.disease.get_word_range()
     diagnosis_start, diagnosis_end = x.diagnosis.get_word_range()
