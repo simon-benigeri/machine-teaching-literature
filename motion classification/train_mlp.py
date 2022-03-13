@@ -1,9 +1,7 @@
 from argparse import ArgumentParser
 from pathlib import Path
-from random import shuffle
-import shutil
 from typing import Optional
-from tqdm.notebook import trange, tqdm
+from tqdm import tqdm
 import time
 import json
 
@@ -25,35 +23,18 @@ from snorkel_labeling import create_lf_set, apply_lfs, LfAggregator, TieBreakPol
 class MLP(nn.Module):
     def __init__(self, input_dim, output_dim):
         super().__init__()
-
-        self.input_fc = nn.Linear(input_dim, 10000)
-        self.hidden_fc = nn.Linear(10000, 2000)
-        self.hidden_fc = nn.Linear(2000, 100)
-        self.output_fc = nn.Linear(100, output_dim)
+        self.linear_1 = nn.Linear(input_dim, 256, bias=True)
+        self.hidden_1 = nn.Linear(256, 128, bias=True)
+        self.hidden_2 = nn.Linear(128, 64, bias=True)
+        self.output = nn.Linear(64, output_dim)
 
     def forward(self, x):
-
         # x = [batch size, height, width]
 
-        batch_size = x.shape[0]
-
-        x = x.view(batch_size, -1)
-
-        # x = [batch size, height * width]
-
-        h_1 = F.relu(self.input_fc(x))
-
-        # h_1 = [batch size, 250]
-
-        h_2 = F.relu(self.hidden_fc(h_1))
-
-        # h_2 = [batch size, 100]
-
-        y_pred = self.output_fc(h_2)
-
-        # y_pred = [batch size, output dim]
-
-        return y_pred, h_2
+        x = F.relu(self.linear_1(x))
+        x = F.relu(self.hidden_1(x))
+        x = F.relu(self.hidden_2(x))
+        return self.output(x)
 
 def calculate_accuracy(y_pred, y):
     top_pred = y_pred.argmax(1, keepdim=True)
@@ -69,22 +50,14 @@ def train(model, iterator, optimizer, criterion, device):
     model.train()
 
     for (x, y) in tqdm(iterator, desc="Training", leave=False):
-
         x = x.to(device)
         y = y.to(device)
-
         optimizer.zero_grad()
-
-        y_pred, _ = model(x)
-
+        y_pred = model(x)
         loss = criterion(y_pred, y)
-
         acc = calculate_accuracy(y_pred, y)
-
         loss.backward()
-
         optimizer.step()
-
         epoch_loss += loss.item()
         epoch_acc += acc.item()
 
@@ -111,7 +84,6 @@ def main(
     # create lfs
     lf_set = create_lf_set()
 
-
     # apply lfs to create training set
     train_texts, train_labels = apply_lfs(
         df_train=df_train,
@@ -135,7 +107,7 @@ def main(
         test_labels = test_labels[:32]
 
     # Extract features with tfidf
-    vectorizer_tfidf = TfidfVectorizer(ngram_range=(1, 5))
+    vectorizer_tfidf = TfidfVectorizer(ngram_range=(1, 2), max_features=2000)
     X_train = vectorizer_tfidf.fit_transform(train_texts).toarray().astype(np.float32)
     X_test = vectorizer_tfidf.transform(test_texts).toarray().astype(np.float32)
     # print(len(X_train[2]))
@@ -146,22 +118,21 @@ def main(
     test_dataset = MotionDatasetMLP(X_test, test_labels)
 
     # Probaly need some dataloader stuff here
-    train_dataloader = DataLoader(train_dataset, batch_size=32, shuffle=True)
-    test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=True)
+    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True)
 
     data, label = next(iter(train_dataloader))
-    print(data.shape, label.shape)
-
     # if we work with probabilistic labels
     if return_probs:
         # use loss/criterion = KL Div
+        # loss = nn.BCELoss()
         pass
     else:
         # use BCE
         loss = nn.BCELoss()
 
     model = MLP
-    INPUT_DIM = 138443
+    INPUT_DIM = train_dataset.data.shape[1] # * batch_size
     OUTPUT_DIM = 1
 
     model = MLP(INPUT_DIM, OUTPUT_DIM)
@@ -171,7 +142,7 @@ def main(
 
     best_valid_loss = float('inf')
 
-    for epoch in trange(EPOCHS):
+    for epoch in tqdm(range(EPOCHS)):
 
         start_time = time.monotonic()
         train_loss, train_acc = train(model, train_dataloader, optimizer, loss, device="cpu")
