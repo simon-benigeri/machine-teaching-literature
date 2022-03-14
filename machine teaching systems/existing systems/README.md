@@ -57,6 +57,10 @@ Machin Teaching can help achieve the minimum set of demonstrations needed to tea
 
 Watch this [video](https://www.youtube.com/watch?v=S9Gp2j7I5mU). It's only 30 seconds long.
 
+## [HistomicsML2 - Interactive classification of whole-slide imaging data for cancer researchers (Cooper et. al)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8026494/)
+
+HistomicsML2 is an interactive machine learning for whole slide imaging data and provides a web-based user interface and is available as a deployable software container. 
+
 ## [Cambridge Semantics, Parabole.ai - Using Machine Teaching in Text Analysis](https://usc-isi-i2.github.io/KDD2020workshop/papers/KGE1_paper_10.pdf)
 
 This paper is a case study on using Machine Teaching with knowledge graphs. It lacks detail and is pretty shots. I also wonder if they put "teaching" instead of "learning." But the paper makes the case that it is useful to leverage knowledge graphs in combination with key words, phrases, and concepts provided by subject matter experts.
