@@ -25,8 +25,9 @@ This paper relies on Bayesian approaches to deep learning and uses them in the a
 
 ### [On the Importance of Effectively Adapting Pretrained Language Models for Active Learning](https://arxiv.org/abs/2104.08320)
 
-### [Deep Active Learning for Text Classificationwith Diverse Interpretations](https://sxkdz.github.io/files/publications/CIKM/ALDEN/ALDEN.pdf)
+### [Deep Active Learning for Text Classification with Diverse Interpretations](https://sxkdz.github.io/files/publications/CIKM/ALDEN/ALDEN.pdf)
 
+## Hybrid Systems - Active Learning and Data Programming
 https://dataspace.princeton.edu/handle/88435/dsp01n009w514c  
 https://appen.com/blog/ml-techniques-active-learning-vs-weak-supervision/  
 https://ieeexplore.ieee.org/document/8622459  
@@ -38,6 +39,3 @@ https://www.semanticscholar.org/paper/CHEF%3A-A-Cheap-and-Fast-Pipeline-for-Iter
 https://www.semanticscholar.org/paper/Knodle%3A-Modular-Weakly-Supervised-Learning-with-Sedova-Stephan/25412ff4315261d855f879052baa7fd48e6cade1  
 https://github.com/knodle/knodle  
 
-### Active Learning for NLP Tasks
-
-## Hybrid Systems - Active Learning and Data Programming
