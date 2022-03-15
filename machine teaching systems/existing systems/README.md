@@ -57,9 +57,11 @@ Machin Teaching can help achieve the minimum set of demonstrations needed to tea
 
 Watch this [video](https://www.youtube.com/watch?v=S9Gp2j7I5mU). It's only 30 seconds long.
 
-## [HistomicsML2 - Interactive classification of whole-slide imaging data for cancer researchers (Cooper et. al)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8026494/)
+## [HistomicsML2 - Interactive classification of whole-slide imaging data for cancer researchers](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8026494/)
 
 HistomicsML2 is an interactive machine learning for whole slide imaging data and provides a web-based user interface and is available as a deployable software container. 
+
+Users select a classifier, the classifier makes predictions, and users correct these predictions. Active learning helps speed up this interaction. That is to say, it takes less annotations/samples to train the model. However, active learning suffers from bias in the training set. I spoke to Lee Cooper and he mentioned that Bayesian Active Learning could be used in futire work.
 
 ## [Cambridge Semantics, Parabole.ai - Using Machine Teaching in Text Analysis](https://usc-isi-i2.github.io/KDD2020workshop/papers/KGE1_paper_10.pdf)
 
